@@ -21,4 +21,16 @@ public class HelloServlet extends HttpServlet {
         out.println("</body>");
         out.println("</html>");
     }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        System.out.println("init HelloServlet");
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        System.out.println("destroy HelloServlet");
+    }
 }
