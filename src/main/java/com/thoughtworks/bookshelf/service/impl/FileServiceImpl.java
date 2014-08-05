@@ -15,15 +15,19 @@ public class FileServiceImpl implements FileService {
     public List<File> readFile(String filepath) throws IOException {
         File file = new File(filepath);
 
-        if (file.isDirectory()) {
+        if (!file.isDirectory() && isImageFile(file)){
+              imageFiles.add(file);
+        }else if (file.isDirectory()) {
             String[] filelist = file.list();
             for (int i = 0; i < filelist.length; i++) {
                 File dirFile = new File(filepath + "//" + filelist[i]);
                 if (!dirFile.isDirectory() && isImageFile(dirFile)) {
                     imageFiles.add(dirFile);
-                }
-            }
-        }
+                }else if(dirFile.isDirectory()){
+                    readFile(filepath + "//" + filelist[i]);
+                }//else if
+            }// for
+        }// else if (file.isDirectory())
         return imageFiles;
     }
 

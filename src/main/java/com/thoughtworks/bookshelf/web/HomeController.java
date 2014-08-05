@@ -28,6 +28,7 @@ public class HomeController {
             System.out.println(imagesPath);
             List<File> imageFiles = fileService.readFile(imagesPath);
             model.addAttribute("imageFiles", imageFiles);
+            model.addAttribute("contextPath",contextPath + "/");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
