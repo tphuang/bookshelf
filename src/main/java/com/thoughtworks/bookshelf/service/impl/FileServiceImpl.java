@@ -17,12 +17,9 @@ public class FileServiceImpl implements FileService {
 
         if (file.isDirectory()) {
             String[] filelist = file.list();
-            System.out.println(filelist);
             for (int i = 0; i < filelist.length; i++) {
                 File dirFile = new File(filepath + "//" + filelist[i]);
-                System.out.println(filelist[i]);
                 if (!dirFile.isDirectory() && isImageFile(dirFile)) {
-                    System.out.println(isImageFile(dirFile));
                     imageFiles.add(dirFile);
                 }
             }

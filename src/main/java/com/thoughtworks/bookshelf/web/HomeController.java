@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sun.misc.Request;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,9 +21,12 @@ public class HomeController {
     private FileService fileService;
 
     @RequestMapping("home")
-    public String loadHomePage(Model model)  {
+    public String loadHomePage(HttpServletRequest request, Model model)  {
         try {
-            List<File> imageFiles = fileService.readFile("/Users/tphuang/Projects/Java/bookshelf/src/main/webapp/images");
+            String contextPath = request.getRealPath("/");
+            String imagesPath = contextPath + "/images";
+            System.out.println(imagesPath);
+            List<File> imageFiles = fileService.readFile(imagesPath);
             model.addAttribute("imageFiles", imageFiles);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

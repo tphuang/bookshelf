@@ -14,7 +14,7 @@ public class App
         System.out.println( "Hello World!" );
 
         FileService fileService = new FileServiceImpl();
-        List<File> imageFiles = fileService.readFile("/Users/tphuang/Projects/Java/bookshelf/src/main/webapp/images");
+        List<File> imageFiles = fileService.readFile("/bookshelf/src/main/webapp/images");
         for(File file :imageFiles){
             System.out.println(file.getName() + "\t"+ file.getPath());
         }
