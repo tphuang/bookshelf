@@ -5,21 +5,33 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>Sample Application</title>
+    <title>BookShelf Application</title>
+    <link rel="stylesheet" href="<c:url value='/style/main.css' />" type="text/css"/>
+    <script type="text/javascript" src="<c:url value='/scripts/jquery-1.10.2.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/scripts/bootstrap.js' />"></script>
 </head>
 <body>
 <h1>Hello, ${name}!</h1>
 
-<p>The path: <%= request.getRealPath("/images")%></p>
-
+<p><br>The path: <%= request.getRealPath("/images")%>
+</p>
 
 <table class="table table-images">
-    <c:forEach var="imageFile" items="${imageFiles}" varStatus="row">
-        <tr>
-            <td>/images/${imageFile.name}</td>
-            <td><img src="<c:out value="${fn:substringAfter(imageFile.path, contextPath)}"/>"
-                     alt="${imageFile.name}" title="${imageFile.name}"></td>
-        </tr>
+    <c:forEach var="imageFile" items="${imageFiles}" varStatus="i">
+
+        <c:if test="${i.index % 3 eq 0}">
+            <tr>
+        </c:if>
+        <td>
+            <div>${i.index}</div>
+            <div><img src="<c:out value="${fn:substringAfter(imageFile.path, contextPath)}"/>"
+                      alt="${imageFile.name}" title="${imageFile.name}"></div>
+            <div> <c:out value="${fn:substringAfter(imageFile.path, contextPath)}"/> </div>
+        </td>
+
+        <c:if test="${(i.index+1) eq 0}">
+            </tr>
+        </c:if>
     </c:forEach>
 </table>
 
