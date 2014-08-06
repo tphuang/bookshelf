@@ -6,3 +6,8 @@
 .gradle/*
 build/*
 out/*
+
+*.iml
+/gradle/*
+
+gradlew*

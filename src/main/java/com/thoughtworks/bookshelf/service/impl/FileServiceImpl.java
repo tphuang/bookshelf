@@ -11,30 +11,34 @@ import java.util.List;
 @Component
 public class FileServiceImpl implements FileService {
 
-    public List<File> readFile(String filepath) throws IOException {
+    public List<File> readFile(String filePath) throws IOException {
         List<File> imageFiles = new ArrayList<File>();
-        File file = new File(filepath);
+        File file = new File(filePath);
 
-        if (!file.isDirectory() && isImageFile(file)){
-              imageFiles.add(file);
-        }else if (file.isDirectory()) {
-            String[] filelist = file.list();
-            for (int i = 0; i < filelist.length; i++) {
-                File dirFile = new File(filepath + "//" + filelist[i]);
-                if (!dirFile.isDirectory() && isImageFile(dirFile)) {
-                    imageFiles.add(dirFile);
-                }else if(dirFile.isDirectory()){
-                    imageFiles.addAll(readFile(filepath + "//" + filelist[i]));
-                }//else if
-            }// for
-        }// else if (file.isDirectory())
+        if (!file.isDirectory() && isImageFile(file)) {
+            imageFiles.add(file);
+        } else if (file.isDirectory()) {
+            String[] fileList = file.list();
+            for (String tempFile : fileList) {
+                readSubDirs(filePath, imageFiles, tempFile);
+            }
+        }
         return imageFiles;
+    }
+
+    private void readSubDirs(String filePath, List<File> imageFiles, String tempFile) throws IOException {
+        File dirFile = new File(filePath + "//" + tempFile);
+        if (!dirFile.isDirectory() && isImageFile(dirFile)) {
+            imageFiles.add(dirFile);
+        } else if (dirFile.isDirectory()) {
+            imageFiles.addAll(readFile(filePath + "//" + tempFile));
+        }
     }
 
     public boolean isImageFile(File file) {
         String[] images = {".jpg", ".png", ".gif"};
-        for(int i = 0;i< images.length; i++){
-            if (file.getName().endsWith(images[i])) return true ;
+        for (String image : images) {
+            if (file.getName().endsWith(image)) return true;
         }
         return false;
     }
