@@ -80,7 +80,9 @@ table {
 .text-error {
     color: indianred;
 }
-
+.table-images{
+    margin: 0 auto;
+}
 .table-images img{
     width: 288px;
     height: 148px;

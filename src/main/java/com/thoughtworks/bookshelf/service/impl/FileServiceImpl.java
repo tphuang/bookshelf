@@ -10,9 +10,9 @@ import java.util.List;
 
 @Component
 public class FileServiceImpl implements FileService {
-    private List<File> imageFiles = new ArrayList<File>();
 
     public List<File> readFile(String filepath) throws IOException {
+        List<File> imageFiles = new ArrayList<File>();
         File file = new File(filepath);
 
         if (!file.isDirectory() && isImageFile(file)){
@@ -24,7 +24,7 @@ public class FileServiceImpl implements FileService {
                 if (!dirFile.isDirectory() && isImageFile(dirFile)) {
                     imageFiles.add(dirFile);
                 }else if(dirFile.isDirectory()){
-                    readFile(filepath + "//" + filelist[i]);
+                    imageFiles.addAll(readFile(filepath + "//" + filelist[i]));
                 }//else if
             }// for
         }// else if (file.isDirectory())
