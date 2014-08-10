@@ -3,21 +3,22 @@ package com.thoughtworks.bookshelf.web;
 import com.thoughtworks.bookshelf.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.List;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 
 
 @Controller
-@RequestMapping("/")
-public class HomeController {
+@RequestMapping("hello/*")
+public class FileController {
 
     @Autowired
     private FileService fileService;
@@ -25,38 +26,25 @@ public class HomeController {
     @Autowired
     private ServletContext context;
 
-    @RequestMapping("home")
-    public String loadHomePage(Model model) {
-        try {
-            String imagesPath = context.getRealPath("/images");
-            System.out.println("****" + imagesPath);
-            List<File> imageFiles = fileService.readFile(imagesPath);
-            model.addAttribute("imageFiles", imageFiles);
-            model.addAttribute("contextPath", context.getRealPath("/") + "/");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        model.addAttribute("name", "Tingpeng");
 
-        return "home";
-    }
-
-    @RequestMapping("download")
-    public ModelAndView download(@RequestParam("fileRelativePath") String fileRelativePath, HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("/download/*/{fileRelativePath}")
+    public ModelAndView download(@PathVariable("fileRelativePath") String fileRelativePath, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("UTF-8");
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
+        System.out.println("fileRelativePath: " + fileRelativePath);
         String ctxPath = request.getSession().getServletContext().getRealPath(
                 "/") + "/";
         String downLoadPath = ctxPath + fileRelativePath;
+        System.out.println("ctxPath: " + ctxPath);
+        System.out.println("downLoadPath: " + downLoadPath);
         try {
-            File downLoadFile = new File(downLoadPath);
-            long fileLength = downLoadFile.length();
+            long fileLength = new File(downLoadPath).length();
             response.setContentType("application/x-msdownload;");
             response.setHeader("Content-disposition", "attachment; filename="
-                    + new String(downLoadFile.getName().getBytes("utf-8"), "ISO8859-1"));
+                    + new String(fileRelativePath.getBytes("utf-8"), "ISO8859-1"));
             response.setHeader("Content-Length", String.valueOf(fileLength));
             bis = new BufferedInputStream(new FileInputStream(downLoadPath));
             bos = new BufferedOutputStream(response.getOutputStream());

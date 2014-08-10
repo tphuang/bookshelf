@@ -29,7 +29,7 @@
             <%--<c:set target="${imageFile}" property="fileRelativePath" value="<c:out value='${fn:substringAfter(imageFile.path, contextPath)}'/>"/>--%>
             <c:set var="fileRelativePath"  value="${fn:substringAfter(imageFile.path, contextPath)}" scope="session"/>
             <div> <c:out value="${fileRelativePath}"/> </div>
-            <a href="${pageContext.request.contextPath}/download/${imageFile.name}">DownLoad</a>
+            <a href="${pageContext.request.contextPath}/download?fileRelativePath=${fileRelativePath}">DownLoad</a>
         </td>
 
         <c:if test="${(i.index+1) eq 0}">
