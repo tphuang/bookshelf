@@ -1,7 +1,6 @@
 package com.thoughtworks.bookshelf.web;
 
 import com.thoughtworks.bookshelf.service.FileService;
-import com.thoughtworks.bookshelf.service.impl.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +17,15 @@ import java.util.Map;
 @RequestMapping("/")
 public class HomeController {
 
-    @Autowired
+
     private FileService fileService;
 
-    @Autowired
     private ServletContext context;
 
-    public HomeController() {
-        fileService = new FileServiceImpl();
+    @Autowired
+    public HomeController(FileService fileService, ServletContext context) {
+        this.fileService = fileService;
+        this.context = context;
     }
 
     @RequestMapping("home")
@@ -44,7 +44,7 @@ public class HomeController {
     }
 
     @RequestMapping("get-douban-book")
-    public String getDoubanBook (Model model) {
+    public String getDoubanBook(Model model) {
         String url = "https://api.douban.com/v2/book/2123092";
         Map<String, Object> bookInfo = fileService.getDoubanBook(url);
         model.addAttribute("title", bookInfo.get("title"));

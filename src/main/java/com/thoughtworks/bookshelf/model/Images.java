@@ -4,6 +4,10 @@ public class Images {
 
     private String large;
 
+    public Images(String large) {
+        this.large = large;
+    }
+
     public String getLarge() {
         return large;
     }
