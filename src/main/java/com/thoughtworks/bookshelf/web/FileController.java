@@ -3,8 +3,8 @@ package com.thoughtworks.bookshelf.web;
 import com.thoughtworks.bookshelf.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
@@ -17,7 +17,7 @@ import java.io.FileInputStream;
 
 
 @Controller
-@RequestMapping("hello/*")
+@RequestMapping("/")
 public class FileController {
 
     @Autowired
@@ -26,25 +26,22 @@ public class FileController {
     @Autowired
     private ServletContext context;
 
-
-    @RequestMapping("/download/*/{fileRelativePath}")
-    public ModelAndView download(@PathVariable("fileRelativePath") String fileRelativePath, HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("download")
+    public ModelAndView download(@RequestParam("fileRelativePath") String fileRelativePath, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("UTF-8");
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
-        System.out.println("fileRelativePath: " + fileRelativePath);
         String ctxPath = request.getSession().getServletContext().getRealPath(
                 "/") + "/";
         String downLoadPath = ctxPath + fileRelativePath;
-        System.out.println("ctxPath: " + ctxPath);
-        System.out.println("downLoadPath: " + downLoadPath);
         try {
-            long fileLength = new File(downLoadPath).length();
+            File downLoadFile = new File(downLoadPath);
+            long fileLength = downLoadFile.length();
             response.setContentType("application/x-msdownload;");
             response.setHeader("Content-disposition", "attachment; filename="
-                    + new String(fileRelativePath.getBytes("utf-8"), "ISO8859-1"));
+                    + new String(downLoadFile.getName().getBytes("utf-8"), "ISO8859-1"));
             response.setHeader("Content-Length", String.valueOf(fileLength));
             bis = new BufferedInputStream(new FileInputStream(downLoadPath));
             bos = new BufferedOutputStream(response.getOutputStream());

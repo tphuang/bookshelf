@@ -29,8 +29,7 @@ body {
     margin-bottom: 20px;
 }
 
-a { text-decoration: none; }
-a:link { color: black; }
+a:link { color: blue; }
 a:visited { color: black; }
 a:hover { color: grey; }
 a:active { color: gray; }

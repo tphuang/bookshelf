@@ -1,12 +1,18 @@
 package com.thoughtworks.bookshelf.service.impl;
 
 import com.thoughtworks.bookshelf.service.FileService;
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.springframework.stereotype.Component;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class FileServiceImpl implements FileService {
@@ -42,4 +48,13 @@ public class FileServiceImpl implements FileService {
         }
         return false;
     }
+
+    public Map<String, Object> getDoubanBook(String url){
+        Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);// 注册json 支持
+        WebTarget target = client.target(url);
+        Response response = target.request().get();
+        Map<String, Object> bookInfo = response.readEntity(Map.class);
+        return bookInfo;
+    }
+
 }

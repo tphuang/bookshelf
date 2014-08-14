@@ -6,10 +6,11 @@
 <style type="text/css">
     .douban-title {
         padding: 10px 10px 0px 0px;
-        text-shadow: 0 1px 0 white,1px 2px 2px #AAA;
+        text-shadow: 0 1px 0 white, 1px 2px 2px #AAA;
         font-weight: bold;
-        font-size:24px;
+        font-size: 24px;
     }
+
     .douban-list a {
         padding: 10px 10px 10px 0px;
     }
@@ -20,10 +21,15 @@
 <body>
 <script>
     var _defaults = {
-        user:"justin79",
-        api:""
+        user: "justin79",
+        api: ""
     }
     dbapi.show(_defaults);
 </script>
+
+<a href="${imagePath}"><img src="${imagePath}"/> </a>
+<p> ${title}</p>
+
+<p><a href="${pageContext.request.contextPath}/home"> Back</a></p>
 </body>
 </html>

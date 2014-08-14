@@ -11,6 +11,11 @@ public class BookInfo implements Serializable {
     public BookInfo() {
     }
 
+    public BookInfo(String title, Images images) {
+        this.title = title;
+        this.images = images;
+    }
+
     public String getTitle() {
         return title;
     }

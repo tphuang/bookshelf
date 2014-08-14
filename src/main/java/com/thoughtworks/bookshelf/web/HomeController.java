@@ -1,18 +1,17 @@
 package com.thoughtworks.bookshelf.web;
 
 import com.thoughtworks.bookshelf.service.FileService;
+import com.thoughtworks.bookshelf.service.impl.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -25,11 +24,14 @@ public class HomeController {
     @Autowired
     private ServletContext context;
 
+    public HomeController() {
+        fileService = new FileServiceImpl();
+    }
+
     @RequestMapping("home")
     public String loadHomePage(Model model) {
         try {
             String imagesPath = context.getRealPath("/images");
-            System.out.println("****" + imagesPath);
             List<File> imageFiles = fileService.readFile(imagesPath);
             model.addAttribute("imageFiles", imageFiles);
             model.addAttribute("contextPath", context.getRealPath("/") + "/");
@@ -41,39 +43,15 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping("download")
-    public ModelAndView download(@RequestParam("fileRelativePath") String fileRelativePath, HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        response.setContentType("text/html;charset=utf-8");
-        request.setCharacterEncoding("UTF-8");
-        BufferedInputStream bis = null;
-        BufferedOutputStream bos = null;
-        String ctxPath = request.getSession().getServletContext().getRealPath(
-                "/") + "/";
-        String downLoadPath = ctxPath + fileRelativePath;
-        try {
-            File downLoadFile = new File(downLoadPath);
-            long fileLength = downLoadFile.length();
-            response.setContentType("application/x-msdownload;");
-            response.setHeader("Content-disposition", "attachment; filename="
-                    + new String(downLoadFile.getName().getBytes("utf-8"), "ISO8859-1"));
-            response.setHeader("Content-Length", String.valueOf(fileLength));
-            bis = new BufferedInputStream(new FileInputStream(downLoadPath));
-            bos = new BufferedOutputStream(response.getOutputStream());
-            byte[] buff = new byte[2048];
-            int bytesRead;
-            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
-                bos.write(buff, 0, bytesRead);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (bis != null)
-                bis.close();
-            if (bos != null)
-                bos.close();
-        }
-        return null;
-    }
+    @RequestMapping("get-douban-book")
+    public String getDoubanBook (Model model) {
+        String url = "https://api.douban.com/v2/book/2123092";
+        Map<String, Object> bookInfo = fileService.getDoubanBook(url);
+        model.addAttribute("title", bookInfo.get("title"));
+        Map images = (Map) bookInfo.get("images");
+        String imagesPath = (String) images.get("large");
+        model.addAttribute("imagePath", imagesPath);
 
+        return "douban_book";
+    }
 }
