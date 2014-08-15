@@ -1,4 +1,4 @@
-package com.thoughtworks.bookshelf.web;
+package com.thoughtworks.bookshelf.controller;
 
 import com.thoughtworks.bookshelf.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;

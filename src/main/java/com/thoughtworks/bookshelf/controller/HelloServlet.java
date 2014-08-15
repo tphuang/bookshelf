@@ -1,4 +1,4 @@
-package com.thoughtworks.bookshelf.web;
+package com.thoughtworks.bookshelf.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

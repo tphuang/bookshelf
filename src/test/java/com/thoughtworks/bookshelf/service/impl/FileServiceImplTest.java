@@ -37,7 +37,7 @@ public class FileServiceImplTest {
     @Test
     public void shouldGetResponseWhenGetDoubanBook() throws Exception {
         String url= "https://api.douban.com/v2/book/2123092";
-        Map<String, Object> bookInfo = fileService.getDoubanBook(url);
+        Map<String, Object> bookInfo = fileService.getDoubanEntity(url);
         assertThat((String) bookInfo.get("title"), is("Web开发敏捷之道"));
         Map images = (Map) bookInfo.get("images");
         assertThat(images.size(),is(3));

@@ -49,12 +49,12 @@ public class FileServiceImpl implements FileService {
         return false;
     }
 
-    public Map<String, Object> getDoubanBook(String url){
+    public Map<String, Object> getDoubanEntity(String url){
         Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);// 注册json 支持
         WebTarget target = client.target(url);
         Response response = target.request().get();
-        Map<String, Object> bookInfo = response.readEntity(Map.class);
-        return bookInfo;
+        Map<String, Object> entity = response.readEntity(Map.class);
+        return entity;
     }
 
 }

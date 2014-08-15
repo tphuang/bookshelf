@@ -6,14 +6,14 @@ public class BookInfo implements Serializable {
 
     private static final long serialVersionUID = 2179631010054135058L;
     private String title;
-    private Images images;
+    private String imagePath;
 
     public BookInfo() {
     }
 
-    public BookInfo(String title, Images images) {
+    public BookInfo(String title, String imagePath) {
         this.title = title;
-        this.images = images;
+        this.imagePath = imagePath;
     }
 
     public String getTitle() {
@@ -24,11 +24,11 @@ public class BookInfo implements Serializable {
         this.title = title;
     }
 
-    public Images getImages() {
-        return images;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImages(Images images) {
-        this.images = images;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

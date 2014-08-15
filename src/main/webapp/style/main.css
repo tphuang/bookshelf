@@ -79,7 +79,7 @@ table {
 .text-error {
     color: indianred;
 }
-.table-images{
+.table-images, .douban-images{
     margin: 0 auto;
 }
 .table-images img{

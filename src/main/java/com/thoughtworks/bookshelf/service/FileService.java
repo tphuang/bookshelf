@@ -9,5 +9,5 @@ public interface FileService {
     List<File> readFile(String filePath) throws IOException;
 
     boolean isImageFile(File file);
-    Map<String, Object> getDoubanBook(String url);
+    Map<String, Object> getDoubanEntity(String url);
 }

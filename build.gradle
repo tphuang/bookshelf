@@ -30,7 +30,7 @@ dependencies {
     compile "org.codehaus.jackson:jackson-mapper-asl:1.9.13",
             "org.codehaus.jackson:jackson-jaxrs:1.9.13"
     compile "org.glassfish.jersey.core:jersey-server:2.11",
-                "org.glassfish.jersey.core:jersey-client:2.11",
+            "org.glassfish.jersey.core:jersey-client:2.11",
             "org.glassfish.jersey.core:jersey-common:2.11"
 
     testCompile 'org.hamcrest:hamcrest-all:1.3'
