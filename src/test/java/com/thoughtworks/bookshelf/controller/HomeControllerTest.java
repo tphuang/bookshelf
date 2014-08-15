@@ -85,8 +85,8 @@ public class HomeControllerTest {
 
         List<BookInfo> bookInfos = (List<BookInfo>) model.asMap().get("bookInfos");
         //then
-        assertThat(bookInfos.get(0).getTitle(),is("小王子"));
-        assertThat(bookInfos.get(0).getImagePath(),is("http://xiaowangzi.jpg"));
+        assertThat(bookInfos.get(0).getTitle(), is("小王子"));
+        assertThat(bookInfos.get(0).getImagePath(), is("http://xiaowangzi.jpg"));
         assertThat(result, is(expected));
     }
 }
