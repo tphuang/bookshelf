@@ -76,9 +76,9 @@ public class HomeController {
         model.addAttribute("bookInfos", bookInfos);
 
         float maxPageItems = 1;
-        float items = bookInfos.size();
+//        float items = bookInfos.size();
         model.addAttribute("maxPageItems", (int)maxPageItems);
-        model.addAttribute("totalPages", (int)Math.ceil(items/maxPageItems));
+//        model.addAttribute("totalPages", (int)Math.ceil(items/maxPageItems));
 
         return "douban_book";
     }

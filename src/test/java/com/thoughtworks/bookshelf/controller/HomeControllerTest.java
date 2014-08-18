@@ -65,6 +65,7 @@ public class HomeControllerTest {
 
         //given
         String expected = "douban_book";
+        int expectedMaxPageItems = 1;
         HashMap<String, Object> doubanCollectionsMap = new HashMap<String, Object>();
         List<Map> collectionsList = new ArrayList();
         Map<String, Object> colletionMap = new HashMap<String, Object>();
@@ -82,11 +83,13 @@ public class HomeControllerTest {
 
         //when
         String result = homeController.getDoubanCollections(model);
-
         List<BookInfo> bookInfos = (List<BookInfo>) model.asMap().get("bookInfos");
+        int resultMaxPageItems = Integer.parseInt(model.asMap().get("maxPageItems").toString());
+
         //then
         assertThat(bookInfos.get(0).getTitle(), is("小王子"));
         assertThat(bookInfos.get(0).getImagePath(), is("http://xiaowangzi.jpg"));
+        assertThat(resultMaxPageItems, is(expectedMaxPageItems));
         assertThat(result, is(expected));
     }
 }
