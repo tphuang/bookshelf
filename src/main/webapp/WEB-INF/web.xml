@@ -41,6 +41,15 @@
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PagerServlet</servlet-name>
+        <servlet-class>com.thoughtworks.bookshelf.controller.PagerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PagerServlet</servlet-name>
+        <url-pattern>/page</url-pattern>
+    </servlet-mapping>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring/app-config.xml</param-value>

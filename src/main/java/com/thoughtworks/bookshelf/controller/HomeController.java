@@ -60,6 +60,7 @@ public class HomeController {
     public String getDoubanCollections(Model model) {
         ArrayList<BookInfo> bookInfos = new ArrayList<BookInfo>();
         String url = "https://api.douban.com/v2/book/user/73684180/collections";
+
         Map<String, Object> doubanCollectionsMap = fileService.getDoubanEntity(url);
         List<Map> collectionsList = (List<Map>) doubanCollectionsMap.get("collections");
 
@@ -73,6 +74,12 @@ public class HomeController {
             bookInfos.add(bookInfo);
         }
         model.addAttribute("bookInfos", bookInfos);
+
+        float maxPageItems = 1;
+        float items = bookInfos.size();
+        model.addAttribute("maxPageItems", (int)maxPageItems);
+        model.addAttribute("totalPages", (int)Math.ceil(items/maxPageItems));
+
         return "douban_book";
     }
 }

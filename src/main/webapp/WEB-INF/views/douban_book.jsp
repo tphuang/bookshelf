@@ -1,22 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 <html>
 <head>
     <title>Douban Book</title>
 </head>
-    <style type="text/css">
-        .douban-title {
-            padding: 10px 10px 0px 0px;
-            text-shadow: 0 1px 0 white, 1px 2px 2px #AAA;
-            font-weight: bold;
-            font-size: 24px;
-        }
-
-        .douban-list a {
-            padding: 10px 10px 10px 0px;
-        }
-    </style>
     <link rel="stylesheet" href="<c:url value='/style/main.css' />" type="text/css"/>
     <script type="text/javascript" src="<c:url value='/scripts/jquery-1.10.2.js' />"></script>
     <script type="text/javascript" src="<c:url value='/scripts/bootstrap.js' />"></script>
@@ -36,24 +25,25 @@
 
 <p> ${title}</p>
 
-
-<table class="table Douban-images">
-    <c:forEach var="bookInfo" items="${bookInfos}" varStatus="i">
-
-        <c:if test="${i.index % 3 eq 0}">
-            <tr>
-        </c:if>
-        <td>
-            <div>${i.index}</div>
-            <div><img src="<c:out value="${bookInfo.imagePath}" /> "/></div>
-            <div><c:out value="${bookInfo.title}"/></div>
-        </td>
-
-        <c:if test="${(i.index+1) eq 0}">
-            </tr>
-        </c:if>
-    </c:forEach>
-</table>
+<pg:pager url="${pageContext.request.contextPath}/get-douban-collections" maxPageItems="${maxPageItems}"
+          maxIndexPages="10" export="offset,currentPageNumber=pageNumber" isOffset="false" index="half-full">
+    <table class="table Douban-images">
+        <c:forEach var="bookInfo" items="${bookInfos}" varStatus="i">
+            <pg:item>
+                <tr>
+                    <td>
+                        <div>${i.index + 1}</div>
+                        <div><img src="<c:out value="${bookInfo.imagePath}" /> "/></div>
+                        <div><c:out value="${bookInfo.title}"/></div>
+                    </td>
+                </tr>
+           </pg:item>
+        </c:forEach>
+    </table>
+    <div class="pagination" style="margin-left:42%">
+        <%@ include file="pagination_common.jsp" %>
+    </div>
+</pg:pager>
 
 <p><a href="${pageContext.request.contextPath}/home"> Back</a></p>
 </body>

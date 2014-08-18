@@ -30,6 +30,7 @@ dependencies {
     compile "org.glassfish.jersey.core:jersey-server:2.11",
             "org.glassfish.jersey.core:jersey-client:2.11",
             "org.glassfish.jersey.core:jersey-common:2.11"
+    compile "jsptags:pager-taglib:2.0"
 
     compile 'org.springframework:spring-jdbc:4.0.6.RELEASE'
 
