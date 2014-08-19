@@ -18,10 +18,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-
-
     private FileService fileService;
-
     private ServletContext context;
 
     @Autowired

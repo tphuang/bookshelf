@@ -1,4 +1,4 @@
-package com.thoughtworks.bookshelf.controller;
+package com.thoughtworks.bookshelf.dao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
