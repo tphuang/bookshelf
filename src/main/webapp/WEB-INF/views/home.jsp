@@ -1,17 +1,5 @@
-<!DOCTYPE HTML>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<html>
-<head>
-    <title>BookShelf Application</title>
-    <link rel="stylesheet" href="<c:url value='/style/main.css' />" type="text/css"/>
-    <script type="text/javascript" src="<c:url value='/scripts/jquery-1.10.2.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/scripts/bootstrap.js' />"></script>
-</head>
-<body>
-<h1>Hello, ${name}!</h1>
+<%@ include file="header.jsp" %>
 
 <p><br>The path: <%= request.getRealPath("/images")%>
 </p>
@@ -40,8 +28,8 @@
 
 <p><a href="${pageContext.request.contextPath}/get-douban-book">Get DoubanBook</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-collections">Get DoubanCollections</a></p>
-</body>
-</html>
+
+<%@ include file="footer.jsp" %>
 
 
 

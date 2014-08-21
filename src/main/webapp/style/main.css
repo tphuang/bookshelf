@@ -1,11 +1,16 @@
 * {
-    margin: 0px;
-    padding: 0px;
     font-family: Helvetica;
 }
 
 body {
     padding: 20px;
+}
+.center {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    overflow:auto;
 }
 
 .brand {
