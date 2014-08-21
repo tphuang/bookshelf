@@ -10,10 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 
 
 @Controller
@@ -36,29 +33,10 @@ public class FileController {
         String ctxPath = request.getSession().getServletContext().getRealPath(
                 "/") + "/";
         String downLoadPath = ctxPath + fileRelativePath;
-        try {
-            File downLoadFile = new File(downLoadPath);
-            long fileLength = downLoadFile.length();
-            response.setContentType("application/x-msdownload;");
-            response.setHeader("Content-disposition", "attachment; filename="
-                    + new String(downLoadFile.getName().getBytes("utf-8"), "ISO8859-1"));
-            response.setHeader("Content-Length", String.valueOf(fileLength));
-            bis = new BufferedInputStream(new FileInputStream(downLoadPath));
-            bos = new BufferedOutputStream(response.getOutputStream());
-            byte[] buff = new byte[2048];
-            int bytesRead;
-            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
-                bos.write(buff, 0, bytesRead);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (bis != null)
-                bis.close();
-            if (bos != null)
-                bos.close();
-        }
+        fileService.downLoadFile(downLoadPath, response, bis, bos);
         return null;
     }
+
+
 
 }
