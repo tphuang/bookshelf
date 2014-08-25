@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,8 +39,15 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        model.addAttribute("name", "Tingpeng");
+        return "home";
+    }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String get(Model model, Principal principal) {
+        if (null == principal) {
+            return "login";
+        }
+        loadHomePage(model);
         return "home";
     }
 

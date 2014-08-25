@@ -19,16 +19,28 @@
         <a class="brand" href="<c:url value='/home' />" class="nav_link">
             TW BookShelf
         </a>
+        <c:set var="userName" value="${sessionScope.userName}" scope="session"></c:set>
         <ul class="nav">
             <li>
-                <a href="<c:url value='/home' />" >Home</a>
+                <a href="<c:url value='/home' />">Home</a>
             </li>
             <li>
-                <a href="<c:url value='#' />" >Books</a>
+                <a href="<c:url value='#' />">Books</a>
+            </li>
+            <c:if test="${userName != null}">
+                <li>
+                    Welcome <a href="<c:url value='#' />">${userName}</a>!
+                </li>
+
+            </c:if>
+
+            <li>
+                <a href="<c:url value='/login' />">Login</a>
             </li>
             <li>
-                Welcome <a href="<c:url value='#' />" >Tingpeng</a>!
+                <a href="<c:url value='/logout' />">Logout</a>
             </li>
+
         </ul>
 
     </div>

@@ -53,6 +53,16 @@
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
           p:defaultEncoding="UTF-8"/>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 需拦截的地址 -->
+            <mvc:mapping path="/*"/>
+            <!-- 需排除拦截的地址 -->
+            <!--<exclude-mapping path="/login"/>-->
+            <bean class="com.thoughtworks.bookshelf.controller.SecurityInterceptor">
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <bean id="jdbcTemplate"
           class="org.springframework.jdbc.core.JdbcTemplate">
