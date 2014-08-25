@@ -15,7 +15,6 @@ public class SecurityInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
         HttpSession session = req.getSession(true);
         // 判断如果没有取到用户信息，就跳转到登陆页面，提示用户进行登陆
-        System.out.println(session.getAttribute("userName"));
         if (session.getAttribute("userName") == null || "".equals(session.getAttribute("userName").toString())) {
 //            res.sendRedirect(LOGIN_URL);
 //            System.out.println(session.getAttribute("userName"));

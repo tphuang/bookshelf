@@ -16,7 +16,7 @@
 
 <pg:pager url="${pageContext.request.contextPath}/get-douban-collections" maxPageItems="${maxPageItems}"
           maxIndexPages="10" export="offset,currentPageNumber=pageNumber" isOffset="false" index="half-full">
-    <table class="table Douban-images">
+    <table class="table Douban-images center">
         <c:forEach var="bookInfo" items="${bookInfos}" varStatus="i">
             <pg:item>
                 <tr>
@@ -29,7 +29,7 @@
            </pg:item>
         </c:forEach>
     </table>
-    <div class="pagination" style="margin-left:42%">
+    <div class="pagination center">
         <%@ include file="pagination_common.jsp" %>
     </div>
 </pg:pager>
