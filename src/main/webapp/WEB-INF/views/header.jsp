@@ -31,9 +31,7 @@
                 <li>
                     Welcome <a href="<c:url value='#' />">${userName}</a>!
                 </li>
-
             </c:if>
-
             <li>
                 <a href="<c:url value='/login' />">Login</a>
             </li>

@@ -3,33 +3,20 @@ package com.thoughtworks.bookshelf.service.impl;
 
 import com.thoughtworks.bookshelf.model.User;
 import com.thoughtworks.bookshelf.service.UserService;
+import com.thoughtworks.bookshelf.util.DBConnection;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
 public class UserServiceImpl implements UserService {
     private List<User> users;
-
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
-        // 加载MySQL的JDBC的驱动
-        Class.forName("com.mysql.jdbc.Driver");
-
-        String url = "jdbc:mysql://127.0.0.1:3306/bookshelf";
-        String username = "root";
-        String password = "";
-
-        // 创建与MySQL数据库的连接类的实例
-        Connection conn = DriverManager.getConnection(url, username, password);
-        return conn;
-    }
+    private Connection connection;
 
     public void save(User user) throws Exception {
-        Connection connection = getConnection();
+        connection = DBConnection.getConnection();
         try {
             // 禁用自动提交
             connection.setAutoCommit(false);

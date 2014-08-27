@@ -14,13 +14,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void testGetConnection() throws Exception {
-
-    }
-
-    @Test
     public void shouldSaveUserIntoDataBase() throws Exception {
-
         User user = new User();
         user.setUserName("Tom");
         user.setPassWord("123456");
