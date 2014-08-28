@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
     private UserService userService;
 
@@ -20,12 +19,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/create", method = RequestMethod.GET)
     public String createUser(ModelMap model) {
         return "register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
     public String register(HttpServletRequest request, ModelMap model) throws Exception {
         String userName = request.getParameter("username");
         String passWord = request.getParameter("password");
@@ -35,5 +34,11 @@ public class UserController {
         userService.save(user);
         model.addAttribute("message","Created an account successfully,  please login!");
         return "login";
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String getAllUsers(ModelMap model) throws Exception {
+        model.addAttribute("users",userService.findAllUsers());
+        return "users";
     }
 }

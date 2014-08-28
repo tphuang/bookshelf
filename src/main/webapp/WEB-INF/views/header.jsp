@@ -9,6 +9,7 @@
 <head>
     <title>BookShelf Application</title>
     <link rel="stylesheet" href="<c:url value='/style/main.css' />" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/style/douban.css' />" type="text/css"/>
     <script type="text/javascript" src="<c:url value='/scripts/jquery-1.10.2.js' />"></script>
     <script type="text/javascript" src="<c:url value='/scripts/bootstrap.js' />"></script>
 </head>
@@ -25,7 +26,10 @@
                 <a href="<c:url value='/home' />">Home</a>
             </li>
             <li>
-                <a href="<c:url value='#' />">Books</a>
+                <a href="<c:url value='/get-douban-collections-css' />">Books</a>
+            </li>
+            <li>
+                <a href="<c:url value='/users' />">Users</a>
             </li>
             <c:if test="${userName != null}">
                 <li>

@@ -88,4 +88,31 @@ public class HomeController {
 
         return "douban_book";
     }
+
+    @RequestMapping("get-douban-collections-css")
+    public String getDoubanCollectionsWithCSS(Model model) {
+        ArrayList<BookInfo> bookInfos = new ArrayList<BookInfo>();
+        String url = "https://api.douban.com/v2/book/user/73684180/collections";
+
+        Map<String, Object> doubanCollectionsMap = fileService.getDoubanEntity(url);
+        List<Map> collectionsList = (List<Map>) doubanCollectionsMap.get("collections");
+
+        for (int i = 0; i < collectionsList.size(); i++) {
+            Map<String, Object> colletionMap = (Map) collectionsList.get(i);
+            Map<String, Object> bookInfoMap = (Map<String, Object>) colletionMap.get("book");
+            Map<String, String> imagesMap = (Map) bookInfoMap.get("images");
+            BookInfo bookInfo = new BookInfo();
+            bookInfo.setTitle((String) bookInfoMap.get("title"));
+            bookInfo.setImagePath(imagesMap.get("large"));
+            bookInfos.add(bookInfo);
+        }
+        model.addAttribute("bookInfos", bookInfos);
+
+        float maxPageItems = 1;
+//        float items = bookInfos.size();
+        model.addAttribute("maxPageItems", (int)maxPageItems);
+//        model.addAttribute("totalPages", (int)Math.ceil(items/maxPageItems));
+
+        return "douban_book_for_css_practise";
+    }
 }

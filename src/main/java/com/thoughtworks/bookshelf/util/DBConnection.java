@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    public final static String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
-    public final static String DB_URL = "jdbc:mysql://127.0.0.1:3306/bookshelf";
-    public final static String DB_USERNAME = "root";
-    public final static String DB_PASSWORD = "";
+    private final static String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
+    private final static String DB_URL = "jdbc:mysql://127.0.0.1:3306/bookshelf";
+    private final static String DB_USERNAME = "root";
+    private final static String DB_PASSWORD = "";
 
     public static Connection getConnection() throws ClassNotFoundException,
             SQLException {
