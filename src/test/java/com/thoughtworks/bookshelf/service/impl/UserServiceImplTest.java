@@ -4,7 +4,6 @@ import com.thoughtworks.bookshelf.dao.UserDao;
 import com.thoughtworks.bookshelf.model.User;
 import com.thoughtworks.bookshelf.service.UserService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,9 +11,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UserServiceImplTest {
     private UserDao userDao;
@@ -22,44 +19,46 @@ public class UserServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        userService = new UserServiceImpl();
         userDao = mock(UserDao.class);
+        userService = new UserServiceImpl(userDao);
     }
 
     @Test
-    @Ignore
     public void shouldSaveUser() throws Exception {
         //given
-        User user = new User();
-        user.setUserName("Tom");
-        user.setPassWord("123456");
-        int beforeAddedSize = userService.findAllUsers().size();
+        int beforeSavedSize = userService.findAllUsers().size();
+
+        User user = new User("Mike","123456");
+        List<User> users = new ArrayList<User>();
+        users.add(user);
+        when(userDao.findAllUsers()).thenReturn(users);
+
         //when
-        userService.save(user);
+        userService.saveUser(user);
 
         //then
-        assertThat(userService.findAllUsers().size(), is(beforeAddedSize + 1));
+        verify(userDao).save(user);
+        assertThat(userService.findAllUsers().size(), is(beforeSavedSize + 1));
     }
 
     @Test
-    @Ignore
     public void shouldFindAllUser() throws Exception {
         //given
-        List<User> ExpectedUsers = new ArrayList<User>();
+        List<User> expectedUsers = new ArrayList<User>();
         User user1 = new User("Tingpeng1", "123456");
         User user2 = new User("Tingpeng2", "123456");
         User user3 = new User("Tingpeng3", "123456");
-        ExpectedUsers.add(user1);
-        ExpectedUsers.add(user2);
-        ExpectedUsers.add(user3);
-        when(userDao.findAllUsers()).thenReturn(ExpectedUsers);
+        expectedUsers.add(user1);
+        expectedUsers.add(user2);
+        expectedUsers.add(user3);
+        when(userDao.findAllUsers()).thenReturn(expectedUsers);
 
         //when
-        List<User> ActualUsers = userService.findAllUsers();
+        List<User> actualUsers = userService.findAllUsers();
 
         //then
         verify(userDao).findAllUsers();
-        assertThat(ActualUsers.size(), is(3));
+        assertThat(actualUsers.size(), is(3));
     }
 
 

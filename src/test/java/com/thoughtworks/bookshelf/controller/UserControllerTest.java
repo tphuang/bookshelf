@@ -3,7 +3,6 @@ package com.thoughtworks.bookshelf.controller;
 import com.thoughtworks.bookshelf.model.User;
 import com.thoughtworks.bookshelf.service.UserService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.ModelMap;
@@ -12,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UserControllerTest {
     private UserController userController;
@@ -43,28 +40,24 @@ public class UserControllerTest {
     }
 
     @Test
-    @Ignore
     public void shouldReturnRegisterPage() throws Exception {
         //given
         String expectedPage = "login";
         String userName = "Ting";
         String passWord = "123456";
-        User user = new User();
         when(request.getParameter("userName")).thenReturn(userName);
         when(request.getParameter("passWord")).thenReturn(passWord);
-        user.setUserName(userName);
-        user.setPassWord(passWord);
 
         //when
         String actualPage = userController.register(request, model);
 
         //then
         assertThat(actualPage,is(expectedPage));
-        verify(userService).save(user);
+        verify(userService).saveUser(any(User.class));
     }
 
     @Test
-    public void shoulReturnUsersPage() throws Exception {
+    public void shouldReturnUsersPage() throws Exception {
         //given
         String expectedPage = "users";
 

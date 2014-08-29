@@ -31,14 +31,14 @@ public class UserController {
         User user = new User();
         user.setUserName(userName);
         user.setPassWord(passWord);
-        userService.save(user);
+        userService.saveUser(user);
         model.addAttribute("message","Created an account successfully,  please login!");
         return "login";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String getAllUsers(ModelMap model) throws Exception {
-        model.addAttribute("users",userService.findAllUsers());
+            model.addAttribute("users",userService.findAllUsers());
         return "users";
     }
 }

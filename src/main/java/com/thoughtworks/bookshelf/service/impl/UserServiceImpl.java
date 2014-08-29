@@ -12,10 +12,14 @@ import java.util.List;
 
 @Component
 public class UserServiceImpl implements UserService {
-    @Autowired
     private UserDao userDao;
 
-    public void save(User user) throws Exception {
+    @Autowired
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public void saveUser(User user) throws Exception {
         userDao.save(user);
     }
 
