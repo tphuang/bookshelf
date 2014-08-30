@@ -111,4 +111,47 @@ public class HomeControllerTest {
         assertThat(resultMaxPageItems, is(expectedMaxPageItems));
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void shouldReturnBooksPage() throws Exception {
+        //given
+        String expected = "douban_book_for_css_practise";
+        int expectedMaxPageItems = 1;
+        HashMap<String, Object> doubanCollectionsMap = new HashMap<String, Object>();
+        List<Map> collectionsList = new ArrayList();
+        Map<String, Object> colletionMap = new HashMap<String, Object>();
+        Map<String, Object> bookInfoMap = new HashMap<String, Object>();
+        Map<String, String> imagesMap = new HashMap<String, String>();
+        List<String> authorList = new ArrayList<String>();
+
+        imagesMap.put("large", "http://xiaowangzi.jpg");
+        bookInfoMap.put("title", "小王子");
+        String author1 = "Tomas1";
+        String author2 = "Tomas2";
+        authorList.add(author1);
+        authorList.add(author2);
+
+        bookInfoMap.put("author",authorList);
+        bookInfoMap.put("summary","This is a good story");
+        bookInfoMap.put("alt","http://xiaowangzi.com");
+        bookInfoMap.put("images", imagesMap);
+        colletionMap.put("book", bookInfoMap);
+        collectionsList.add(colletionMap);
+        doubanCollectionsMap.put("collections", collectionsList);
+
+        when(fileService.getDoubanEntity(anyString())).thenReturn(doubanCollectionsMap);
+
+        //when
+        String result = homeController.getDoubanCollectionsWithCSS(model);
+        List<BookInfo> bookInfos = (List<BookInfo>) model.asMap().get("bookInfos");
+
+        //then
+        assertThat(bookInfos.get(0).getTitle(), is("小王子"));
+        assertThat(bookInfos.get(0).getImagePath(), is("http://xiaowangzi.jpg"));
+        assertThat(bookInfos.get(0).getAuthor(), is(authorList.toString()));
+        assertThat(bookInfos.get(0).getSummary(), is("This is a good story"));
+        assertThat(bookInfos.get(0).getAlt(),is("http://xiaowangzi.com"));
+        assertThat(result, is(expected));
+
+    }
 }

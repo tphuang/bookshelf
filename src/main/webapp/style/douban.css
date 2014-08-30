@@ -1,0 +1,55 @@
+.douban-collections .collection-image{
+    width: 197px;
+    height: 243px;
+    vertical-align: middle;
+    padding: 5px 5px 15px;
+}
+
+div.collection-image-container{
+    position: relative;
+}
+.douban-collections .collection-info{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 103%;
+    z-index: 999;
+}
+.suspension-box{
+    width: 350px;
+    /*height: 200px;*/
+    padding: 10px;
+    position: relative;
+    border: 1px solid #333;
+    background-color: #f0f0f0;
+}
+
+.suspension-box:after, .suspension-box:before{
+    border: solid transparent;
+    content: '';
+    height: 0;
+    right: 100%;
+    position: absolute;
+    width: 0;
+}
+
+
+.suspension-box:after {
+    border-width: 9px;
+    border-right-color: #f0f0f0;
+    top: 45%;
+}
+
+.suspension-box:before {
+    border-width: 11px;
+    border-right-color: #333;
+    top: 44.5%;
+}
+
+.clear{
+    clear: both;
+}
+
+#first-collection{
+    display: block;
+}

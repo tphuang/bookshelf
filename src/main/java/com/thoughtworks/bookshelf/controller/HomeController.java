@@ -101,17 +101,17 @@ public class HomeController {
             Map<String, Object> colletionMap = (Map) collectionsList.get(i);
             Map<String, Object> bookInfoMap = (Map<String, Object>) colletionMap.get("book");
             Map<String, String> imagesMap = (Map) bookInfoMap.get("images");
+            List<String> authorList = (List<String>) bookInfoMap.get("author");
+
             BookInfo bookInfo = new BookInfo();
             bookInfo.setTitle((String) bookInfoMap.get("title"));
             bookInfo.setImagePath(imagesMap.get("large"));
+            bookInfo.setAuthor(authorList.toString());
+            bookInfo.setSummary((String) bookInfoMap.get("summary"));
+            bookInfo.setAlt((String) bookInfoMap.get("alt"));
             bookInfos.add(bookInfo);
         }
         model.addAttribute("bookInfos", bookInfos);
-
-        float maxPageItems = 1;
-//        float items = bookInfos.size();
-        model.addAttribute("maxPageItems", (int)maxPageItems);
-//        model.addAttribute("totalPages", (int)Math.ceil(items/maxPageItems));
 
         return "douban_book_for_css_practise";
     }
