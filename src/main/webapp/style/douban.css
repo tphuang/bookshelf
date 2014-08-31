@@ -37,13 +37,13 @@ div.collection-image-container{
 .suspension-box:after {
     border-width: 9px;
     border-right-color: #f0f0f0;
-    top: 45%;
+    top: 20%;
 }
 
 .suspension-box:before {
     border-width: 11px;
     border-right-color: #333;
-    top: 44.5%;
+    top: 19.5%;
 }
 
 .clear{
