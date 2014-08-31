@@ -3,6 +3,7 @@ package com.thoughtworks.bookshelf.service.impl;
 import com.thoughtworks.bookshelf.dao.UserDao;
 import com.thoughtworks.bookshelf.model.User;
 import com.thoughtworks.bookshelf.service.UserService;
+import com.thoughtworks.bookshelf.util.UserInfoEmptyException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,6 +40,28 @@ public class UserServiceImplTest {
         //then
         verify(userDao).save(user);
         assertThat(userService.findAllUsers().size(), is(beforeSavedSize + 1));
+    }
+
+    @Test(expected = UserInfoEmptyException.class)
+    public void shouldThrowUserInfoEmptyExceptionWhenUserNameIsEmpty() throws Exception {
+        //given
+        User user = new User("","123456");
+        List<User> users = new ArrayList<User>();
+        users.add(user);
+
+        //when
+        userService.saveUser(user);
+    }
+
+    @Test(expected = UserInfoEmptyException.class)
+    public void shouldThrowUserInfoEmptyExceptionWhenUserInfoEmpty() throws Exception {
+        //given
+        User user = new User("","");
+        List<User> users = new ArrayList<User>();
+        users.add(user);
+
+        //when
+        userService.saveUser(user);
     }
 
     @Test

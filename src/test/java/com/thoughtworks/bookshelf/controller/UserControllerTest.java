@@ -2,8 +2,10 @@ package com.thoughtworks.bookshelf.controller;
 
 import com.thoughtworks.bookshelf.model.User;
 import com.thoughtworks.bookshelf.service.UserService;
+import com.thoughtworks.bookshelf.util.UserInfoEmptyException;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.ModelMap;
 
@@ -43,17 +45,30 @@ public class UserControllerTest {
     public void shouldReturnRegisterPage() throws Exception {
         //given
         String expectedPage = "login";
-        String userName = "Ting";
-        String passWord = "123456";
-        when(request.getParameter("userName")).thenReturn(userName);
-        when(request.getParameter("passWord")).thenReturn(passWord);
+        User user = new User("Ting", "123456");
 
         //when
-        String actualPage = userController.register(request, model);
+        String actualPage = userController.register(user, request, model);
 
         //then
         assertThat(actualPage,is(expectedPage));
         verify(userService).saveUser(any(User.class));
+    }
+
+    @Test
+    public void shouldThrowUserInfoEmptyWhenUserInfoIsEmpty() throws Exception {
+        //given
+        String expectedPage = "register";
+        String errorMessage = "userName or passWord should not be empty!";
+        User user = new User("", "");
+        Mockito.doThrow(new UserInfoEmptyException()).when(userService).saveUser(any(User.class));
+
+        //when
+        String actualPage = userController.register(user, request, model);
+
+        //then
+        assertThat(actualPage, is(expectedPage));
+        assertThat((String) model.get("errorMessage"), is(errorMessage));
     }
 
     @Test

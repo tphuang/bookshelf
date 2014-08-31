@@ -2,7 +2,7 @@
 <%@ include file="header.jsp" %>
 
 <form class="form-horizontal center" name='f' action="<c:url value='login-validation' />" method="post">
-    <div class="sucess-message"> <b>${message}</b></div>
+    <div class="sucess-message"> <b>${successMessage}</b></div>
     <div class="control-group">
         <label class="control-label" for="username">Username</label>
 
@@ -19,7 +19,7 @@
     </div>
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">Login</button>
         </div>
     </div>
 

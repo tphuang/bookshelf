@@ -2,6 +2,7 @@
 <%@ include file="header.jsp" %>
 
 <form class="form-horizontal center" name='f' action="<c:url value='/user/register' />" method="post">
+    <div class="error"> <b>${errorMessage}</b></div>
     <div class="control-group">
         <label class="control-label" for="username">Username*</label>
 
@@ -18,7 +19,7 @@
     </div>
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Sign In</button>
         </div>
     </div>
 
