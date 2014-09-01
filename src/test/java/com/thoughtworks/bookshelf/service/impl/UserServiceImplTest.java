@@ -43,9 +43,9 @@ public class UserServiceImplTest {
     }
 
     @Test(expected = UserInfoEmptyException.class)
-    public void shouldThrowUserInfoEmptyExceptionWhenUserNameIsEmpty() throws Exception {
+    public void shouldThrowUserInfoEmptyExceptionWhenUserNameIsBlank() throws Exception {
         //given
-        User user = new User("","123456");
+        User user = new User("     ","123456");
         List<User> users = new ArrayList<User>();
         users.add(user);
 

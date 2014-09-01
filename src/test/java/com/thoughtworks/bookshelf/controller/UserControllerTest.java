@@ -9,8 +9,6 @@ import org.mockito.Mockito;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.ModelMap;
 
-import javax.servlet.http.HttpServletRequest;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
@@ -19,14 +17,12 @@ public class UserControllerTest {
     private UserController userController;
     private UserService userService;
     private ModelMap model;
-    private HttpServletRequest request;
 
     @Before
     public void setUp() throws Exception {
         userService = mock(UserService.class);
         userController = new UserController(userService);
         model = new ExtendedModelMap();
-        request = mock(HttpServletRequest.class);
     }
 
     @Test
@@ -48,7 +44,7 @@ public class UserControllerTest {
         User user = new User("Ting", "123456");
 
         //when
-        String actualPage = userController.register(user, request, model);
+        String actualPage = userController.register(user, model);
 
         //then
         assertThat(actualPage,is(expectedPage));
@@ -64,7 +60,7 @@ public class UserControllerTest {
         Mockito.doThrow(new UserInfoEmptyException()).when(userService).saveUser(any(User.class));
 
         //when
-        String actualPage = userController.register(user, request, model);
+        String actualPage = userController.register(user, model);
 
         //then
         assertThat(actualPage, is(expectedPage));

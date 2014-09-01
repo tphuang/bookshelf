@@ -22,11 +22,10 @@ public class UserServiceImpl implements UserService {
     }
 
     public void saveUser(User user) throws UserInfoEmptyException, SQLException, ClassNotFoundException {
-        if (user == null || "".equals(user.getUserName()) || "".equals(user.getPassWord()) ){
+        if (user.getUserName().trim().isEmpty() || user.getPassWord().trim().isEmpty() ){
             throw new UserInfoEmptyException("userName or passWord should not be empty!");
-        }else {
-            userDao.save(user);
         }
+            userDao.save(user);
     }
 
     public List<User> findAllUsers() throws SQLException, ClassNotFoundException {

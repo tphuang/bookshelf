@@ -7,10 +7,12 @@ public class UserInfoEmptyException extends Exception{
     public UserInfoEmptyException(String msg){
         super(msg);
     }
-    public UserInfoEmptyException(String msg, Throwable throwable){
-        super(msg, throwable);
+
+    //异常链
+    public UserInfoEmptyException(String msg, Throwable cause){
+        super(msg, cause);
     }
-    public UserInfoEmptyException(Throwable throwable){
-        super(throwable);
+    public UserInfoEmptyException(Throwable cause){
+        super(cause);
     }
 }
