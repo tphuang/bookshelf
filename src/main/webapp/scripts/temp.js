@@ -1,112 +1,47 @@
-(function (g) {
-    function f(o, n, m) {
-        if (!o) {
-            return
-        }
-        if (Array.prototype.forEach && o.forEach) {
-            o.forEach(n, m)
-        } else {
-            for (var k = 0, j = o.length; k < j; k++) {
-                if (k in o) {
-                    n.call(m, o[k], k, o)
-                }
-            }
-        }
-    }
+$(document).ready(function () {
 
-    function b(i) {
-        return Object.prototype.toString.call(i) == "[object String]"
-    }
+    var $pagination_content = $('#content');
+    var item = 'p';
+    var items_per_page = 5;
+    var total_items = $pagination_content.find(item).size();
+    var total_pages = Math.ceil(total_items / items_per_page);
 
-    function a(i) {
-        return i === Object(i)
-    }
+    $('#current_page').val(0);
+    $('#items_per_page').val(items_per_page);
 
-    function e(i) {
-        var j = h._global_exports[i];
-        return j && j.exports
+    //setup the first page
+    var navigation_html = '<a class="previous_link" href="javascript:previous();">Prev</a>';
+    var current_link = 0;
+    while (total_pages > current_link) {
+        navigation_html += '<a class="page_link" href="javascript:go_to_page(' + current_link + ')" data-page-number="' + current_link + '">' + (current_link + 1) + '</a>';
+        current_link++;
     }
+    navigation_html += '<a class="next_link" href="javascript:next();">Next</a>';
 
-    function d(o, m) {
-        var l = h, i = {}, k = l._global_exports[name] || {}, n = l._ns = k.ns || l._current_ns || l._ns || "window";
-        var j = [];
-        f(o, function (p) {
-            j.push(e(p))
-        });
-        i = m.apply(this, j) || {};
-        return i
+    $('#page_navigation').html(navigation_html);
+    $('#page_navigation .page_link:first').addClass('active_page');
+    $pagination_content.find(item).hide();
+    $pagination_content.find(item).slice(0, items_per_page).show();
+});
+
+function previous() {
+    new_page = parseInt($('#current_page').val()) - 1;
+    if ($('.active_page').prev('.page_link').length == true) {
+        go_to_page(new_page);
     }
+}
 
-    function h(j, m, l) {
-        if (!b(j)) {
-            throw new Error("Waring: definejs can't handle anonymous AMD module");
-            return
-        }
-        if (!l) {
-            l = m;
-            m = []
-        }
-        var i = d(m, l), k = h._global_exports[j];
-        if (!k) {
-            throw new Error('Waring: there is no definition of "' + j + '" in define.config ?');
-            return
-        }
-        k.exports = i;
-        if (k.alias) {
-            f(k.alias, function (p) {
-                var q = p.split("."), o = g, n = q[0];
-                if (q[1]) {
-                    o = o[n] = o[n] || {};
-                    n = q[1]
-                }
-                o[n] = i
-            })
-        }
+function next() {
+    new_page = parseInt($('#current_page').val()) + 1;
+    if ($('.active_page').next('.page_link').length == true) {
+        go_to_page(new_page);
     }
-
-    function c(i, k) {
-        var l = b(i);
-        if (!k && l) {
-            return e(i)
-        }
-        if (l) {
-            i = [i]
-        }
-        var j = arguments;
-        setTimeout(function () {
-            d.apply(this, j)
-        }, 0)
-    }
-
-    h._global_exports = {};
-    h.ns = function (i, j) {
-        if (!j) {
-            this._ns = i
-        } else {
-            var k = this._global_exports;
-            if (!k[i]) {
-                k[i] = {alias: []}
-            }
-            k[i].ns = j
-        }
-    };
-    h.config = function (i, k) {
-        if (a(i)) {
-            for (var l in i) {
-                this.config(l, i[l])
-            }
-            return
-        }
-        var j = this._global_exports;
-        if (!j[i]) {
-            j[i] = {ns: this._ns, alias: []}
-        }
-        if (b(k)) {
-            k = [k]
-        }
-        [].push.apply(j[i].alias, k)
-    };
-    h.amd = {jQuery: true};
-    g.define = h;
-    g.require = c
-})(window);
+}
+function go_to_page(page_number) {
+    var items_per_page = parseInt($('#items_per_page').val());
+    start_from = page_number * items_per_page;
+    end_on = start_from + items_per_page;
+    $('#content').find('p').hide().slice(start_from, end_on).show();
+    $('.page_link[data-page-number=' + page_number + ']').addClass('active_page').siblings('.active_page').removeClass('active_page');
+    $('#current_page').val(page_number);
+}
