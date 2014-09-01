@@ -1,18 +1,23 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ include file="header.jsp" %>
 
-<script type="text/javascript" src="/scripts/dbapi_beta1_20120316.js"></script>
+<%--<script type="text/javascript" src="/scripts/dbapi_beta1_20120316.js"></script>--%>
+<script type="text/javascript" src="<c:url value='/scripts/jquery-1.4.2.js' />"></script>
+<script type="text/javascript" src="<c:url value='/scripts/jquery-1.10.2.js' />"></script>
+<script type="text/javascript" src="<c:url value='/scripts/pagination.js' />"></script>
 <div class="douban-collections-page">
     <a href="${imagePath}"><img src="${imagePath}"/> </a>
 
     <p> ${title}</p>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='items_per_page' />
 
     <table class="table douban-images center douban-collections">
         <c:forEach var="bookInfo" items="${bookInfos}" varStatus="i">
             <c:if test="${i.index % 3 eq 0}">
                 <tr class="douban-collections-row">
             </c:if>
-            <td douban-collection>
+            <td class="douban-collection">
                 <div class="collection-image-container">
                     <a href="${bookInfo.alt}"><img class="collection-image" src="${bookInfo.imagePath}"/></a>
 
@@ -31,7 +36,7 @@
             </c:if>
         </c:forEach>
     </table>
-
+    <div id='page_navigation'></div>
     <p><a href="${pageContext.request.contextPath}/home"> Back</a></p>
 </div>
 

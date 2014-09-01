@@ -53,3 +53,15 @@ div.collection-image-container{
 #first-collection{
     display: block;
 }
+
+a.page_link.active_page{
+    color: #ff0000;
+}
+a.page_link {
+    margin: 0px 5px;
+}
+
+#page_navigation{
+    width: 18%;
+    margin: 0 auto;
+}
