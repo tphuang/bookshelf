@@ -1,5 +1,5 @@
 <br/> <hr />
-<p class="footer center">
+<p class="footer">
     TW BookShelf - powered by Tingpeng !
 </p>
 

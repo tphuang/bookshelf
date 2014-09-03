@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 
-<table class="users-container center">
+<table class="users-container">
     <thead class="users-title">
         <tr>
             <td>userName</td>

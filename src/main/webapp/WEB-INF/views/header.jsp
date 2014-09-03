@@ -14,9 +14,9 @@
     <script type="text/javascript" src="<c:url value='/scripts/bootstrap.js' />"></script>
 </head>
 
-<body class="center">
-<div class="navbar">
-    <div class="navbar-inner">
+<body>
+<div class="header">
+    <div class="navbar">
         <a class="brand" href="<c:url value='/home' />" class="nav_link">
             TW BookShelf
         </a>
@@ -26,7 +26,7 @@
                 <a href="<c:url value='/home' />">Home</a>
             </li>
             <li>
-                <a href="<c:url value='/get-douban-collections-css' />">Books</a>
+                <a href="<c:url value='/books' />">Books</a>
             </li>
             <li>
                 <a href="<c:url value='/users' />">Users</a>

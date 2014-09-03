@@ -16,7 +16,7 @@
 
 <pg:pager url="${pageContext.request.contextPath}/get-douban-collections" maxPageItems="${maxPageItems}"
           maxIndexPages="8" export="offset,currentPageNumber=pageNumber" isOffset="false" index="half-full">
-    <table class="table douban-images center">
+    <table class="table douban-images">
         <c:forEach var="bookInfo" items="${bookInfos}" varStatus="i">
             <pg:item>
                 <tr>
