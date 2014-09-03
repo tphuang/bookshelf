@@ -3,10 +3,11 @@ package com.thoughtworks.bookshelf.service;
 
 import com.thoughtworks.bookshelf.model.Book;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface BookService {
-    void addBook(Book book);
+//    void addBook(Book book);
 
     Book getBookByISBN(String s);
 
@@ -17,4 +18,6 @@ public interface BookService {
     void deleteBookByISBN(String isbn);
 
     void deleteAllBooks();
+
+    List<Book> findAllbooks() throws SQLException, ClassNotFoundException;
 }

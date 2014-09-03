@@ -3,13 +3,21 @@ package com.thoughtworks.bookshelf.service.impl;
 import com.thoughtworks.bookshelf.dao.BookDao;
 import com.thoughtworks.bookshelf.model.Book;
 import com.thoughtworks.bookshelf.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("SpringJavaAutowiringInspection")
+@Service
 public class BookServiceImpl implements BookService {
-//    @Autowired
     public BookDao bookDao;
+
+    @Autowired
+    public BookServiceImpl(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
 
     public BookDao getBookDao() {
         return bookDao;
@@ -19,10 +27,10 @@ public class BookServiceImpl implements BookService {
         this.bookDao = bookDao;
     }
 
-    @Override
-    public void addBook(Book book) {
-        bookDao.addBook(book);
-    }
+//    @Override
+//    public void addBook(Book book) {
+//        bookDao.addBook(book);
+//    }
 
     @Override
     public Book getBookByISBN(String isbn) {
@@ -47,5 +55,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteAllBooks() {
         bookDao.deleteAllBooks();
+    }
+
+    @Override
+    public List<Book> findAllbooks() throws SQLException, ClassNotFoundException {
+        List<Book> books = new ArrayList<Book>();
+        books = bookDao.findAllBooks();
+        return books;
     }
 }

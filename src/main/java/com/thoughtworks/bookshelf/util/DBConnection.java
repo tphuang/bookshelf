@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
+    //Java8 可以不用加
     private final static String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
     private final static String DB_URL = "jdbc:mysql://127.0.0.1:3306/bookshelf";
     private final static String DB_USERNAME = "root";
