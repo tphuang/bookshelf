@@ -4,7 +4,7 @@
 <p><br>The path: <%= request.getRealPath("/images")%>
 </p>
 
-<table class="table table-images">
+<table class="table table-images center">
     <c:forEach var="imageFile" items="${imageFiles}" varStatus="i">
 
         <c:if test="${i.index % 3 eq 0}">
