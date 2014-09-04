@@ -1,0 +1,26 @@
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+dependencies {
+    testCompile "com.github.samueltbrown:gradle-cucumber-plugin:0.6",
+                "info.cukes:cucumber-java:1.1.8",
+                "info.cukes:cucumber-core:1.1.8",
+                "info.cukes:cucumber-junit:1.1.8",
+                "info.cukes:cucumber-pro:1.0.14"
+}
+
+task cucumber {
+    dependsOn assemble, compileTestJava
+    formats = ['pretty','html:target/cucumber','junit:target/cucumber.xml']
+    glueDirs = ['src/test/resources/',
+            'src/test/resources/support',
+            'src/test/resources/skeleton']
+    featureDirs = ['src/test/resources/skeleton']
+    tags = ['@billing', '@important']
+    monochrome = false
+    strict = false
+    dryRun = false
+}

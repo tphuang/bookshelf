@@ -103,6 +103,11 @@ table {
     height: 180px;
 }
 
+.book-image-large img{
+    width: 204px;
+    height: 290px;
+}
+
 .douban-title {
     padding: 10px 10px 0px 0px;
     text-shadow: 0 1px 0 white, 1px 2px 2px #AAA;

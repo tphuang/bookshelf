@@ -1,6 +1,6 @@
 <%@ include file="header.jsp" %>
 
-<table class="table table-images">
+<table class="table center">
     <c:forEach var="book" items="${books}" varStatus="i">
 
         <c:if test="${i.index % 3 eq 0}">
@@ -8,7 +8,7 @@
         </c:if>
         <td>
             <div>${i.index}</div>
-            <div><img src="<c:out value="${book.imagePath}"/>"
+            <div class="book-image-large"><img src="<c:out value="${book.imagePath}"/>"
                 alt="${book.title}" title="${book.title}"></div>
             <div> <c:out value="${book.title}"/> </div>
             <div> <c:out value="${book.author}"/> </div>
