@@ -4,7 +4,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class GreetingStepdefs {
+public class GreetingSteps {
     @Given("^I have a greeting app with \"Hello\"$")
     public void I_have_a_greeting_app(){
         System.out.println("Greeting App");
