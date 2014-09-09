@@ -44,6 +44,6 @@ public class BaiduSearchSteps {
     }
 
     @Then("^I should be able to see the search result of \"([^\"]*)\"$")
-    public void I_see_as_munged_text(String text) throws InterruptedException {
+    public void I_see_as_munged_text(String text){
     }
 }
