@@ -7,8 +7,11 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class BaiduSearchSteps {
     protected WebDriver webDriver;
@@ -16,8 +19,8 @@ public class BaiduSearchSteps {
     @Before
     public void setUp() {
         webDriver = new FirefoxDriver();
-//        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        webDriver.manage().window();
+        webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        webDriver.manage().window().setSize(new Dimension(860, 1080));
     }
 
     @After
@@ -41,7 +44,6 @@ public class BaiduSearchSteps {
     }
 
     @Then("^I should be able to see the search result of \"([^\"]*)\"$")
-    public void I_see_as_munged_text(String text) {
-//        assertEquals(text, browser.findElement(By.id("munged")).getText());
+    public void I_see_as_munged_text(String text) throws InterruptedException {
     }
 }
