@@ -8,6 +8,7 @@ public class Book {
     private String name;
     private double price;
     private String location;
+    private int id;
 
     public Book() {
     }
@@ -83,5 +84,13 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

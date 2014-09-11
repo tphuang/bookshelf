@@ -24,38 +24,11 @@ public class BookServiceImplTest {
         bookService = new BookServiceImpl(bookDao);
     }
 
-//    @Test
-//    public void should_add_book() throws Exception {
-//        PhysicalBook physicalBook = new PhysicalBook();
-//        bookDao.addBook(physicalBook);
-//        verify(bookDao, times(1)).addBook(physicalBook);
-//    }
-
     @Test
     public void should_get_book_by_ISBN() throws Exception {
         String isbn = "";
         bookDao.getBookByISBN(isbn);
         verify(bookDao, times(1)).getBookByISBN(isbn);
-    }
-
-    @Test
-    public void testModifyBook() throws Exception {
-
-    }
-
-    @Test
-    public void testGetAllBooks() throws Exception {
-
-    }
-
-    @Test
-    public void testDeleteBookByISBN() throws Exception {
-
-    }
-
-    @Test
-    public void testDeleteAllBooks() throws Exception {
-
     }
 
     @Test

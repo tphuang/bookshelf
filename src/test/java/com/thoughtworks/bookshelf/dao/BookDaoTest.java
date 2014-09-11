@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 public class BookDaoTest {
     private BookDao bookDao;
     private JdbcTemplate jdbcTemplate;
@@ -44,6 +47,75 @@ public class BookDaoTest {
         books = bookDao.findBooksByAuthor(author);
 
         System.out.println(books);
+    }
 
+    @Test
+    public void shouldFindBookById() throws Exception {
+        //given
+        Book book = initBook();
+        int bookId = 15;
+
+        //when
+        Book queryBook = bookDao.findBookById(bookId);
+
+        //then
+        assertThat(queryBook.getTitle(),is(book.getTitle()));
+        assertThat(queryBook.getImagePath(),is(book.getImagePath()));
+        assertThat(queryBook.getAuthor(),is(book.getAuthor()));
+        assertThat(queryBook.getISBN(),is(book.getISBN()));
+    }
+
+    @Test
+    public void shouldAddBook() throws Exception {
+        //given
+        Book book = initBook();
+        int beforeAddedSize = bookDao.findAllBooks().size();
+        //when
+        int bookId = bookDao.addBook(book);
+
+        //then
+        assertThat(bookDao.findAllBooks().size(), is(beforeAddedSize + 1));
+        System.out.println(bookId);
+    }
+
+    @Test
+    public void shouldDeleteBook() throws Exception {
+        //given
+        Book book = initBook();
+        int bookId = bookDao.addBook(book);
+        int beforeAddedSize = bookDao.findAllBooks().size();
+        //when
+        bookDao.deleteBookById(bookId);
+
+        //then
+        assertThat(bookDao.findAllBooks().size(), is(beforeAddedSize - 1));
+    }
+
+    @Test
+    public void shouldUpdateBook() throws Exception {
+        //given
+        Book book = initBook();
+        int bookId = bookDao.addBook(book);
+
+        book.setTitle("小王子Updated~");
+        book.setAuthor("廷鹏");
+        book.setId(bookId);
+
+        int beforeAddedSize = bookDao.findAllBooks().size();
+
+        //when
+        bookDao.updateBook(book);
+
+        //then
+        assertThat(bookDao.findAllBooks().size(), is(beforeAddedSize));
+    }
+
+    private Book initBook() {
+        Book book = new Book();
+        book.setTitle("小王子");
+        book.setImagePath("http://img5.douban.com/lpic/s1237549.jpg");
+        book.setAuthor("[法] 圣埃克苏佩里");
+        book.setISBN("9787020042494");
+        return book;
     }
 }

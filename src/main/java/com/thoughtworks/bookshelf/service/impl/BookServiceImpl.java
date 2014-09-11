@@ -12,7 +12,8 @@ import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
-    public BookDao bookDao;
+    private BookDao bookDao;
+    private Book book;
 
     @Autowired
     public BookServiceImpl(BookDao bookDao) {
@@ -27,34 +28,10 @@ public class BookServiceImpl implements BookService {
         this.bookDao = bookDao;
     }
 
-//    @Override
-//    public void addBook(Book book) {
-//        bookDao.addBook(book);
-//    }
-
     @Override
-    public Book getBookByISBN(String isbn) {
-        return bookDao.getBookByISBN(isbn);
-    }
-
-    @Override
-    public void modifyBook(Book book) {
-        bookDao.modifyBook(book);
-    }
-
-    @Override
-    public List<Book> getAllBooks() {
-        return bookDao.getAllBooks();
-    }
-
-    @Override
-    public void deleteBookByISBN(String isbn) {
-        bookDao.deleteBookByISBN(isbn);
-    }
-
-    @Override
-    public void deleteAllBooks() {
-        bookDao.deleteAllBooks();
+    public int addBook(Book book) throws SQLException, ClassNotFoundException {
+        int bookId = bookDao.addBook(book);
+        return bookId;
     }
 
     @Override
@@ -62,5 +39,21 @@ public class BookServiceImpl implements BookService {
         List<Book> books = new ArrayList<Book>();
         books = bookDao.findAllBooks();
         return books;
+    }
+
+    @Override
+    public Book findBookById(int bookId) throws SQLException, ClassNotFoundException {
+        book = bookDao.findBookById(bookId);
+        return book;
+    }
+
+    @Override
+    public void updateBook(Book book) throws SQLException, ClassNotFoundException {
+        bookDao.updateBook(book);
+    }
+
+    @Override
+    public void deleteBookById(int bookId) throws SQLException, ClassNotFoundException {
+        bookDao.deleteBookById(bookId);
     }
 }

@@ -7,17 +7,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface BookService {
-//    void addBook(Book book);
-
-    Book getBookByISBN(String s);
-
-    void modifyBook(Book book);
-
-    List<Book> getAllBooks();
-
-    void deleteBookByISBN(String isbn);
-
-    void deleteAllBooks();
+    int addBook(Book book) throws SQLException, ClassNotFoundException;
 
     List<Book> findAllbooks() throws SQLException, ClassNotFoundException;
+
+    Book findBookById(int bookId) throws SQLException, ClassNotFoundException;
+
+    void updateBook(Book book) throws SQLException, ClassNotFoundException;
+
+    void deleteBookById(int bookId) throws SQLException, ClassNotFoundException;
+
 }

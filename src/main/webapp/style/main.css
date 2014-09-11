@@ -127,3 +127,12 @@ table {
 table tr{
     border-bottom: 1px solid #000;
 }
+
+.action-delete{
+    float: right;
+    margin-right: 20px;
+}
+
+form#book input[type=text]{
+    width: 22em;
+}
