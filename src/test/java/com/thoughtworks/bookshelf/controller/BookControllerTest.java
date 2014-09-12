@@ -30,7 +30,7 @@ public class BookControllerTest {
     public void shouldReturnBooksPage() throws Exception {
 
         //given
-        String expectedPage = "books";
+        String expectedPage = "books/show-books";
 
         //when
         String actualPage = bookController.getAllBooks(model);

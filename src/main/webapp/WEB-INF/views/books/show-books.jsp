@@ -1,4 +1,4 @@
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <table class="table center">
     <c:forEach var="book" items="${books}" varStatus="i">
@@ -47,7 +47,7 @@
     <%--<input type="submit" id="bookToDelBtn" name="bookToDelBtn" value="Del"/>--%>
 </form>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 
 
 

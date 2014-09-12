@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <table class="users-container center">
     <thead class="users-title">
@@ -19,4 +19,4 @@
 
 </table>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

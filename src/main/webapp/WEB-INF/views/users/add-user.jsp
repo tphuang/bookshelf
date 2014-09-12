@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 <div class="content">
-    <form class="form-horizontal" name='f' action="<c:url value='/user/register' />" method="post">
+    <form class="form-horizontal" name='f' action="<c:url value='/user/add' />" method="post">
         <div class="error"> <b>${errorMessage}</b></div>
         <div class="control-group">
             <label class="control-label" for="userName">Username*</label>
@@ -28,4 +28,4 @@
 </div>
 
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

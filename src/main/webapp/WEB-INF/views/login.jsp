@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 <div class="content">
-    <form class="form-horizontal" name='f' action="<c:url value='login-validation' />" method="post">
+    <form class="form-horizontal" name='f' action="<c:url value='/login' />" method="post">
     <div class="sucess-message"> <b>${successMessage}</b></div>
     <div class="control-group">
         <label class="control-label" for="username">Username</label>
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    Don't have an account? <a href='<c:url value="/user/create" />'>Click here to register one!</a>
+    Don't have an account? <a href='<c:url value="/user/add" />'>Click here to register one!</a>
 </form>
 </div>
 <%@ include file="footer.jsp" %>

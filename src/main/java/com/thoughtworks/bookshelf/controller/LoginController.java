@@ -25,12 +25,6 @@ public class LoginController {
         return "redirect:/home";
     }
 
-    @RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
-    public String loginfailed(ModelMap model) {
-        model.addAttribute("error", "true");
-        return "login";
-    }
-
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(ModelMap model, HttpSession session) {
         if (session != null) {
@@ -40,7 +34,7 @@ public class LoginController {
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "login-validation", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginValidation(HttpServletRequest request, Principal principal, ModelMap model) {
         String userName = request.getParameter("username");
         String passWord = request.getParameter("password");
@@ -50,6 +44,7 @@ public class LoginController {
             request.getSession().setAttribute("userName", userName);
             return "redirect:/home";
         }
+        model.addAttribute("error","true");
         return "login";
     }
 }

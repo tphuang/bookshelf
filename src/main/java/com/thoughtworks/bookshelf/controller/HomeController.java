@@ -45,7 +45,7 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String get(Model model, Principal principal) {
         if (null == principal) {
-            return "login";
+            return "users/login";
         }
         loadHomePage(model);
         return "home";

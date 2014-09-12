@@ -19,18 +19,18 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/user/create", method = RequestMethod.GET)
-    public String createUser(ModelMap model) {
-        return "register";
+    @RequestMapping(value = "/user/add", method = RequestMethod.GET)
+    public String loadAddUserPage(ModelMap model) {
+        return "users/add-user";
     }
 
-    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute("user") User user, ModelMap model) throws Exception {
+    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") User user, ModelMap model) throws Exception {
         try {
             userService.saveUser(user);
         } catch (UserInfoEmptyException e) {
             model.addAttribute("errorMessage", "userName or passWord should not be empty!");
-            return "register";
+            return "users/add-user";
         }
         model.addAttribute("successMessage", "Created successfully, please login!");
         return "login";
@@ -39,6 +39,6 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String getAllUsers(ModelMap model) throws Exception {
         model.addAttribute("users", userService.findAllUsers());
-        return "users";
+        return "users/show-users";
     }
 }
