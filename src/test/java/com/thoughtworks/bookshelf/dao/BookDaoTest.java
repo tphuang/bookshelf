@@ -53,7 +53,7 @@ public class BookDaoTest {
     public void shouldFindBookById() throws Exception {
         //given
         Book book = initBook();
-        int bookId = 15;
+        int bookId = bookDao.addBook(book);
 
         //when
         Book queryBook = bookDao.findBookById(bookId);
@@ -75,7 +75,6 @@ public class BookDaoTest {
 
         //then
         assertThat(bookDao.findAllBooks().size(), is(beforeAddedSize + 1));
-        System.out.println(bookId);
     }
 
     @Test
@@ -105,9 +104,12 @@ public class BookDaoTest {
 
         //when
         bookDao.updateBook(book);
+        Book updatedBook = bookDao.findBookById(bookId);
 
         //then
         assertThat(bookDao.findAllBooks().size(), is(beforeAddedSize));
+        assertThat(updatedBook.getTitle(),is(book.getTitle()));
+        assertThat(updatedBook.getAuthor(),is(book.getAuthor()));
     }
 
     private Book initBook() {

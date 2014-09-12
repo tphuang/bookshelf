@@ -9,12 +9,13 @@
         <td>
             <div>${book.id}</div>
             <div class="book-image-large"><img src="<c:out value="${book.imagePath}"/>"
-                alt="${book.title}" title="${book.title}"></div>
-            <div class="action-delete"><a href="books/edit/${book.id}">Edit</a></div>
-            <div class="action-delete"><a href="books/delete/${book.id}">Del</a></div>
-            <div> <c:out value="${book.title}"/> </div>
-            <div> <c:out value="${book.author}"/> </div>
-            <div> <c:out value="${book.ISBN}"/> </div>
+                                               alt="${book.title}" title="${book.title}"></div>
+            <div class="action-item"><a href="javascript:void(0);" onclick="deleteBook('${book.id}');">Del</a></div>
+            <%--<div class="action-delete"><a href="books/delete/${book.id}">Del</a></div>--%>
+            <div class="action-item"><a href="books/edit/${book.id}">Edit</a></div>
+            <div><c:out value="${book.title}"/></div>
+            <div><c:out value="${book.author}"/></div>
+            <div><c:out value="${book.ISBN}"/></div>
         </td>
 
         <c:if test="${(i.index+1) eq 0}">
@@ -24,9 +25,27 @@
 </table>
 
 <p><a href="${pageContext.request.contextPath}/books/add">Add Book</a></p>
+
 <p><a href="${pageContext.request.contextPath}/get-douban-book">Get DoubanBook</a></p>
+
 <p><a href="${pageContext.request.contextPath}/get-douban-collections">Get DoubanCollections</a></p>
+
 <p><a href="${pageContext.request.contextPath}/get-douban-collections-css">Get DoubanCollectionsWithCSS</a></p>
+
+<script type="text/javascript">
+    function deleteBook(bookId) {
+        var isConfirmed = confirm("Are you sure to delete this book?");
+        if (isConfirmed) {
+            var $deleteBookById = $("#deleteBookById");
+            $deleteBookById.attr("action", "books/delete/" + bookId);
+            $deleteBookById.submit();
+        }
+    }
+</script>
+<form id="deleteBookById" method="post" action=''>
+    <input type="hidden" id="bookIdToDel" name="bookIdToDel" value=""/>
+    <%--<input type="submit" id="bookToDelBtn" name="bookToDelBtn" value="Del"/>--%>
+</form>
 
 <%@ include file="footer.jsp" %>
 

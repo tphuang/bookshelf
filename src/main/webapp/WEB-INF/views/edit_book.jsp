@@ -4,7 +4,7 @@
     <h2>Update Book</h2>
     <form:form method="POST" commandName="book" modelAttribute="book"
                action="${pageContext.request.contextPath}/books/update">
-        <table>
+        <table>//jsp tag
             <tbody>
             <tr>
                 <td>Id:</td>

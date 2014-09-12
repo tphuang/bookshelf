@@ -128,9 +128,9 @@ table tr{
     border-bottom: 1px solid #000;
 }
 
-.action-delete{
+.action-item{
     float: right;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 form#book input[type=text]{

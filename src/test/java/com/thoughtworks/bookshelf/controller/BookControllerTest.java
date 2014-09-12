@@ -3,7 +3,6 @@ package com.thoughtworks.bookshelf.controller;
 import com.thoughtworks.bookshelf.model.Book;
 import com.thoughtworks.bookshelf.service.BookService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.ModelMap;
@@ -70,7 +69,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @Ignore
+
     public void shouldUpdateBookAndRedirectToBooksPage() throws Exception {
         //given
         String expectedPage = "redirect:/books";
@@ -79,11 +78,11 @@ public class BookControllerTest {
         book.setAuthor("Tingpeng");
 
         //when
-        String actualPage = bookController.addBook(book, model);
+        String actualPage = bookController.updateBook(book);
 
         //then
         assertThat(actualPage, is(expectedPage));
-        verify(bookService).updateBook(book);
+        verify(bookService).updateBook(any(Book.class));
     }
 
     private Book addedBook() {

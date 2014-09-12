@@ -132,7 +132,7 @@ public class BookDao {
     }
 
     public int addBook(Book book) throws SQLException, ClassNotFoundException {
-        connection = DBConnection.getConnection();
+        connection = DBConnection.getConnection();//Bean
         int bookId = 0;
         try {
             connection.setAutoCommit(false);

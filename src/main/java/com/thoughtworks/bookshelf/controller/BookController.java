@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class BookController {
     private BookService bookService;
@@ -27,7 +25,7 @@ public class BookController {
         return "books";
     }
 
-    @RequestMapping(value = "/books/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/books/delete/{id}", method = RequestMethod.POST)
     public String deleteBook(@PathVariable int id, ModelMap model) throws Exception {
         bookService.deleteBookById(id);
         return "redirect:/books";
@@ -35,16 +33,14 @@ public class BookController {
 
     @RequestMapping(value = "/books/edit/{id}", method = RequestMethod.GET)
     public String editBook(@PathVariable int id, ModelMap model) throws Exception {
-//        Book book = new Book();
         Book book = bookService.findBookById(id);
         model.addAttribute("book",book);
         return "edit_book";
     }
 
     @RequestMapping(value = "books/update", method = RequestMethod.POST)
-    public String updateBook(@ModelAttribute("book") Book book, HttpServletRequest request, ModelMap model) throws Exception {
+    public String updateBook(@ModelAttribute("book") Book book) throws Exception {
         bookService.updateBook(book);
-        System.out.println(book.getId());
         return "redirect:/books";
     }
 
