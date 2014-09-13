@@ -16,7 +16,7 @@
                           alt="${imageFile.name}" title="${imageFile.name}"></div>
                     <%--<c:set target="${imageFile}" property="fileRelativePath" value="<c:out value='${fn:substringAfter(imageFile.path, contextPath)}'/>"/>--%>
                 <c:set var="fileRelativePath"  value="${fn:substringAfter(imageFile.path, contextPath)}" scope="session"/>
-                <div> <c:out value="${fileRelativePath}"/> </div>
+                <div> <c:out value="${imageFile.name}"/> </div>
                 <a href="${pageContext.request.contextPath}/download?fileRelativePath=${fileRelativePath}">DownLoad</a>
             </td>
 
