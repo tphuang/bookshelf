@@ -1,5 +1,5 @@
 <%@taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <script type="text/javascript" src="/scripts/dbapi_beta1_20120316.js"></script>
 <script>
@@ -14,7 +14,7 @@
 
 <p> ${title}</p>
 
-<pg:pager url="${pageContext.request.contextPath}/get-douban-collections" maxPageItems="${maxPageItems}"
+<pg:pager url="${pageContext.request.contextPath}/get-douban-collections-brief" maxPageItems="${maxPageItems}"
           maxIndexPages="8" export="offset,currentPageNumber=pageNumber" isOffset="false" index="half-full">
     <table class="table douban-images">
         <c:forEach var="bookInfo" items="${bookInfos}" varStatus="i">
@@ -26,13 +26,13 @@
                         <div><c:out value="${bookInfo.title}"/></div>
                     </td>
                 </tr>
-           </pg:item>
+            </pg:item>
         </c:forEach>
     </table>
     <div class="pagination center">
-        <%@ include file="pagination_common.jsp" %>
+        <%@ include file="../common/pagination-common.jsp" %>
     </div>
 </pg:pager>
 
 <p><a href="${pageContext.request.contextPath}/home"> Back</a></p>
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

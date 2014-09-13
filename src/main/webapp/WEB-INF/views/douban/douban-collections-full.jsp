@@ -1,7 +1,6 @@
 <%@ page pageEncoding="UTF-8" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
-<%--<script type="text/javascript" src="/scripts/dbapi_beta1_20120316.js"></script>--%>
 <script type="text/javascript" src="<c:url value='/scripts/jquery-1.4.2.js' />"></script>
 <script type="text/javascript" src="<c:url value='/scripts/jquery-1.10.2.js' />"></script>
 <script type="text/javascript" src="<c:url value='/scripts/pagination.js' />"></script>
@@ -51,4 +50,4 @@
 
     });
 </script>
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

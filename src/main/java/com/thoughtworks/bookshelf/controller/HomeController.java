@@ -45,7 +45,7 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String get(Model model, Principal principal) {
         if (null == principal) {
-            return "users/login";
+            return "login";
         }
         loadHomePage(model);
         return "home";
@@ -54,16 +54,19 @@ public class HomeController {
     @RequestMapping("get-douban-book")
     public String getDoubanBook(Model model) {
         String url = "https://api.douban.com/v2/book/2123092";
-        Map<String, Object> bookInfo = fileService.getDoubanEntity(url);
-        model.addAttribute("title", bookInfo.get("title"));
-        Map images = (Map) bookInfo.get("images");
-        String imagesPath = (String) images.get("large");
-        model.addAttribute("imagePath", imagesPath);
-        return "douban_book";
+        Map<String, Object> bookInfoMap = fileService.getDoubanEntity(url);
+        Map<String, String> imagesMap = (Map) bookInfoMap.get("images");
+
+        BookInfo bookInfo = new BookInfo();
+        bookInfo.setTitle((String) bookInfoMap.get("title"));
+        bookInfo.setImagePath(imagesMap.get("large"));
+
+        model.addAttribute("bookInfo", bookInfo);
+        return "douban/douban-book";
     }
 
-    @RequestMapping("get-douban-collections")
-    public String getDoubanCollections(Model model) {
+    @RequestMapping("get-douban-collections-brief")
+    public String getDoubanBriefCollections(Model model) {
         ArrayList<BookInfo> bookInfos = new ArrayList<BookInfo>();
         String url = "https://api.douban.com/v2/book/user/73684180/collections";
 
@@ -85,12 +88,11 @@ public class HomeController {
 //        float items = bookInfos.size();
         model.addAttribute("maxPageItems", (int)maxPageItems);
 //        model.addAttribute("totalPages", (int)Math.ceil(items/maxPageItems));
-
-        return "douban_book";
+        return "douban/douban-collections-brief";
     }
 
-    @RequestMapping("get-douban-collections-css")
-    public String getDoubanCollectionsWithCSS(Model model) {
+    @RequestMapping("get-douban-collections-full")
+    public String getDoubanFullCollections(Model model) {
         ArrayList<BookInfo> bookInfos = new ArrayList<BookInfo>();
         String url = "https://api.douban.com/v2/book/user/73684180/collections";
 
@@ -113,6 +115,6 @@ public class HomeController {
         }
         model.addAttribute("bookInfos", bookInfos);
 
-        return "douban_book_for_css_practise";
+        return "douban/douban-collections-full";
     }
 }

@@ -27,13 +27,8 @@
     </table>
 
     <p><a href="${pageContext.request.contextPath}/get-douban-book">Get DoubanBook</a></p>
-    <p><a href="${pageContext.request.contextPath}/get-douban-collections">Get DoubanCollections</a></p>
-    <p><a href="${pageContext.request.contextPath}/get-douban-collections-css">Get DoubanCollectionsWithCSS</a></p>
+    <p><a href="${pageContext.request.contextPath}/get-douban-collections-brief">Get Douban Brief Collections</a></p>
+    <p><a href="${pageContext.request.contextPath}/get-douban-collections-full">Get Douban Full Collections</a></p>
 </div>
 
 <%@ include file="footer.jsp" %>
-
-
-
-
-

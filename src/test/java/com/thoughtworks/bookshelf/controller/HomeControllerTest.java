@@ -61,21 +61,21 @@ public class HomeControllerTest {
     public void shouldReturnDoubanBookPage() throws Exception {
 
         //given
-        String expected = "douban_book";
+        String expected = "douban/douban-book";
         Map<String, Object> bookInfoMap = new HashMap<String, Object>();
         bookInfoMap.put("title", "小王子");
         Map<String, String> imagesMap = new HashMap<String, String>();
         imagesMap.put("large", "http://xiaowangzi.jpg");
         bookInfoMap.put("images", imagesMap);
-
         when(fileService.getDoubanEntity(anyString())).thenReturn(bookInfoMap);
 
         //when
         String result = homeController.getDoubanBook(model);
+        BookInfo bookInfo = (BookInfo) model.asMap().get("bookInfo");
 
         //then
-        assertThat((String) model.asMap().get("title"), is("小王子"));
-        assertThat((String) model.asMap().get("imagePath"), is("http://xiaowangzi.jpg"));
+        assertThat(bookInfo.getTitle(), is("小王子"));
+        assertThat(bookInfo.getImagePath(), is("http://xiaowangzi.jpg"));
         assertThat(result, is(expected));
     }
 
@@ -83,7 +83,7 @@ public class HomeControllerTest {
     public void shouldReturnDoubanCollectionsPage() throws Exception {
 
         //given
-        String expected = "douban_book";
+        String expected = "douban/douban-collections-brief";
         int expectedMaxPageItems = 1;
         HashMap<String, Object> doubanCollectionsMap = new HashMap<String, Object>();
         List<Map> collectionsList = new ArrayList();
@@ -101,7 +101,7 @@ public class HomeControllerTest {
         when(fileService.getDoubanEntity(anyString())).thenReturn(doubanCollectionsMap);
 
         //when
-        String result = homeController.getDoubanCollections(model);
+        String result = homeController.getDoubanBriefCollections(model);
         List<BookInfo> bookInfos = (List<BookInfo>) model.asMap().get("bookInfos");
         int resultMaxPageItems = Integer.parseInt(model.asMap().get("maxPageItems").toString());
 
@@ -115,7 +115,7 @@ public class HomeControllerTest {
     @Test
     public void shouldReturnBooksPage() throws Exception {
         //given
-        String expected = "douban_book_for_css_practise";
+        String expected = "douban/douban-collections-full";
         int expectedMaxPageItems = 1;
         HashMap<String, Object> doubanCollectionsMap = new HashMap<String, Object>();
         List<Map> collectionsList = new ArrayList();
@@ -142,7 +142,7 @@ public class HomeControllerTest {
         when(fileService.getDoubanEntity(anyString())).thenReturn(doubanCollectionsMap);
 
         //when
-        String result = homeController.getDoubanCollectionsWithCSS(model);
+        String result = homeController.getDoubanFullCollections(model);
         List<BookInfo> bookInfos = (List<BookInfo>) model.asMap().get("bookInfos");
 
         //then
