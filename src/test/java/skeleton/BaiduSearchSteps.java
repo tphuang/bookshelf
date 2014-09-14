@@ -13,13 +13,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
+
 public class BaiduSearchSteps {
     protected WebDriver webDriver;
 
     @Before
     public void setUp() {
         webDriver = new FirefoxDriver();
-        webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         webDriver.manage().window().setSize(new Dimension(860, 1080));
     }
 
@@ -39,11 +42,15 @@ public class BaiduSearchSteps {
     }
 
     @And("^Click on search button$")
-    public void user_click_on_search_button() {
+    public void user_click_on_search_button() throws InterruptedException {
         webDriver.findElement(By.id("su")).click();
+        Thread.sleep(3000);
     }
 
-    @Then("^I should be able to see the search result of \"([^\"]*)\"$")
-    public void I_see_as_munged_text(String text){
+    @Then("The search result title should contains \"([^\"]*)\"")
+    public void the_search_result_title_should_contains(String text)
+    {
+//        WebElement message = webDriver.findElement(By.xpath("//*[@id='content_left']/li[1]/div/h3/a"));
+        assertThat(webDriver.getTitle(), containsString(text));
     }
 }
