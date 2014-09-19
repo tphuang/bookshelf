@@ -2,6 +2,7 @@ package com.thoughtworks.bookshelf.dao;
 
 import com.thoughtworks.bookshelf.model.Book;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -66,6 +67,7 @@ public class BookDaoTest {
     }
 
     @Test
+    @Ignore
     public void shouldAddBook() throws Exception {
         //given
         Book book = initBook();
@@ -91,6 +93,7 @@ public class BookDaoTest {
     }
 
     @Test
+    @Ignore
     public void shouldUpdateBook() throws Exception {
         //given
         Book book = initBook();
