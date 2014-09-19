@@ -6,6 +6,7 @@
 .gradle/*
 build/*
 out/*
+target/*
 
 *.iml
 /gradle/*
