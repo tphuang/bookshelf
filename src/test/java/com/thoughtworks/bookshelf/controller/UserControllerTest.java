@@ -28,7 +28,7 @@ public class UserControllerTest {
     @Test
     public void shouldReturnCreateUserPage() throws Exception {
         //given
-        String expectedPage = "users/add-user";
+        String expectedPage = "users/new_user";
 
         //when
         String actualPage = userController.loadAddUserPage(model);
@@ -54,7 +54,7 @@ public class UserControllerTest {
     @Test
     public void shouldThrowUserInfoEmptyWhenUserInfoIsEmpty() throws Exception {
         //given
-        String expectedPage = "users/add-user";
+        String expectedPage = "users/new_user";
         String errorMessage = "userName or passWord should not be empty!";
         User user = new User("", "");
         Mockito.doThrow(new UserInfoEmptyException()).when(userService).saveUser(any(User.class));
@@ -70,7 +70,7 @@ public class UserControllerTest {
     @Test
     public void shouldReturnUsersPage() throws Exception {
         //given
-        String expectedPage = "users/show-users";
+        String expectedPage = "users/users";
 
         //when
         String actualPage = userController.getAllUsers(model);

@@ -2,7 +2,7 @@
 <%@ include file="../header.jsp" %>
 <div class="content-container clear">
     <div class="content user-pages">
-        <form class="form-horizontal" name='f' action="<c:url value='/user/add' />" method="post">
+        <form class="form-horizontal" name='f' action="<c:url value='/user/create' />" method="post">
             <div class="error"><b>${errorMessage}</b></div>
             <div class="control-group">
                 <label class="control-label" for="userName">Username*</label>

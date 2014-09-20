@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            Don't have an account? <a href='<c:url value="/user/add" />'>Click here to register one!</a>
+            Don't have an account? <a href='<c:url value="/user/new" />'>Click here to register one!</a>
         </form>
     </div>
 </div>

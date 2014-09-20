@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
         if (user.getUserName().trim().isEmpty() || user.getPassWord().trim().isEmpty()) {
             throw new UserInfoEmptyException("userName or passWord should not be empty!");
         }
-        userDao.save(user);
+        userDao.createUsers(user);
     }
 
     public List<User> findAllUsers() throws SQLException, ClassNotFoundException {

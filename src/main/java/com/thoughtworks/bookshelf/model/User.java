@@ -1,7 +1,18 @@
 package com.thoughtworks.bookshelf.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column(name = "userName", length = 20)
     private String userName;
+
+    @Column(name = "passWord", length = 50)
     private String passWord;
 
     public User() {
@@ -26,5 +37,13 @@ public class User {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

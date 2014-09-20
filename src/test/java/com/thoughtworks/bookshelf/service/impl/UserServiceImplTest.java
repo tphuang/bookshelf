@@ -38,7 +38,7 @@ public class UserServiceImplTest {
         userService.saveUser(user);
 
         //then
-        verify(userDao).save(user);
+        verify(userDao).createUsers(user);
         assertThat(userService.findAllUsers().size(), is(beforeSavedSize + 1));
     }
 
