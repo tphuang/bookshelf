@@ -136,3 +136,11 @@ table tr{
 form#book input[type=text]{
     width: 22em;
 }
+
+.content-container{
+    margin: 0 auto;
+}
+
+.content.user-pages{
+    width: 50%;
+}

@@ -57,7 +57,7 @@ public class DoubanController {
 
         float maxPageItems = 1;
 //        float items = bookInfos.size();
-        model.addAttribute("maxPageItems", (int)maxPageItems);
+        model.addAttribute("maxPageItems", (int) maxPageItems);
 //        model.addAttribute("totalPages", (int)Math.ceil(items/maxPageItems));
         return "douban/douban-collections-brief";
     }

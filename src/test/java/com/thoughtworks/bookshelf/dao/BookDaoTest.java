@@ -15,30 +15,16 @@ import static org.hamcrest.core.Is.is;
 public class BookDaoTest {
     private BookDao bookDao;
     private JdbcTemplate jdbcTemplate;
+
     @Before
     public void setUp() throws Exception {
         bookDao = new BookDao();
-//        jdbcTemplate = Mockito.mock(JdbcTemplate.class);
-//        bookDao.setJdbcTemplate(jdbcTemplate);
     }
-//    @Test
-//    public void should_add_book() throws Exception {
-//        PhysicalBook physicalBook = new PhysicalBook();
-//        physicalBook.setISBN("isbn");
-//        physicalBook.setName("spring");
-//        physicalBook.setPrice(11.5);
-//        physicalBook.setAuthor("lily");
-//        physicalBook.setLocation("row one");
-//        bookDao.addBook(physicalBook);
-//        verify(jdbcTemplate,times(1)).update(Mockito.eq(bookDao.ADD_BOOK),Mockito.eq("isbn"),Mockito.eq("spring"),Mockito.eq(11.5),Mockito.eq("lily"),Mockito.eq("row one"));
-//    }
 
     @Test
     public void shouldFindAllBooks() throws Exception {
         List<Book> books = new ArrayList<Book>();
         books = (List<Book>) bookDao.findAllBooks();
-
-        System.out.println(books.get(0).getTitle());
     }
 
     @Test
@@ -46,8 +32,6 @@ public class BookDaoTest {
         List<Book> books = new ArrayList<Book>();
         String author = "史杰鹏";
         books = bookDao.findBooksByAuthor(author);
-
-        System.out.println(books);
     }
 
     @Test
@@ -60,10 +44,10 @@ public class BookDaoTest {
         Book queryBook = bookDao.findBookById(bookId);
 
         //then
-        assertThat(queryBook.getTitle(),is(book.getTitle()));
-        assertThat(queryBook.getImagePath(),is(book.getImagePath()));
-        assertThat(queryBook.getAuthor(),is(book.getAuthor()));
-        assertThat(queryBook.getISBN(),is(book.getISBN()));
+        assertThat(queryBook.getTitle(), is(book.getTitle()));
+        assertThat(queryBook.getImagePath(), is(book.getImagePath()));
+        assertThat(queryBook.getAuthor(), is(book.getAuthor()));
+        assertThat(queryBook.getISBN(), is(book.getISBN()));
     }
 
     @Test
@@ -111,8 +95,8 @@ public class BookDaoTest {
 
         //then
         assertThat(bookDao.findAllBooks().size(), is(beforeAddedSize));
-        assertThat(updatedBook.getTitle(),is(book.getTitle()));
-        assertThat(updatedBook.getAuthor(),is(book.getAuthor()));
+        assertThat(updatedBook.getTitle(), is(book.getTitle()));
+        assertThat(updatedBook.getAuthor(), is(book.getAuthor()));
     }
 
     private Book initBook() {

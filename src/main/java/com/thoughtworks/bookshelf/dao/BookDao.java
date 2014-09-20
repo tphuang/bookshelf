@@ -23,17 +23,6 @@ public class BookDao {
     private PreparedStatement ps;
     private Statement statement;
 
-//    @Autowired
-//    public JdbcTemplate jdbcTemplate;
-//
-//    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-//        this.jdbcTemplate = jdbcTemplate;
-//    }
-//
-//    public void addBook(Book book) {
-//        jdbcTemplate.update(ADD_BOOK, new Object[]{book.getISBN(), book.getName(), book.getPrice(), book.getAuthor(), book.getLocation()});
-//    }
-
     public Book getBookByISBN(String isbn) {
 
         return null;

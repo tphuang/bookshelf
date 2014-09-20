@@ -27,7 +27,8 @@ public class HomeControllerTest {
     public void setup() {
         fileService = mock(FileService.class);
         context = mock(ServletContext.class);
-        homeController = new HomeController(fileService, context);
+        homeController = new HomeController(fileService);
+        homeController.setContext(context);
         model = new ExtendedModelMap();
     }
 

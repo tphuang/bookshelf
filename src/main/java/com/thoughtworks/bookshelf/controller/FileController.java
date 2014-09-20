@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 
 
 @Controller
@@ -19,9 +19,6 @@ public class FileController {
 
     @Autowired
     private FileService fileService;
-
-    @Autowired
-    private ServletContext context;
 
     @RequestMapping("download")
     public ModelAndView download(@RequestParam("fileRelativePath") String fileRelativePath, HttpServletRequest request, HttpServletResponse response)
@@ -36,7 +33,6 @@ public class FileController {
         fileService.downLoadFile(downLoadPath, response, bis, bos);
         return null;
     }
-
 
 
 }

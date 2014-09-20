@@ -23,15 +23,19 @@ import java.util.List;
 @RequestMapping("/")
 public class HomeController {
     private FileService fileService;
+    @Autowired
     private ServletContext context;
     private static final String EMPTY_STR = "";
 
     @Autowired
-    public HomeController(FileService fileService, ServletContext context) {
+    public HomeController(FileService fileService) {
         this.fileService = fileService;
-        this.context = context;
     }
 
+    public void setContext(ServletContext context) {
+        this.context = context;
+    }
+    
     @RequestMapping("home")
     public String loadHomePage(Model model) {
         try {
@@ -82,7 +86,7 @@ public class HomeController {
             request.getSession().setAttribute("userName", userName);
             return "redirect:/home";
         }
-        model.addAttribute("error","true");
+        model.addAttribute("error", "true");
         return "login";
     }
 }

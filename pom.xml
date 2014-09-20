@@ -225,6 +225,22 @@
                     <compilerArgument>-Werror</compilerArgument>
                 </configuration>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.mortbay.jetty</groupId>-->
+                <!--<artifactId>jetty-maven-plugin</artifactId>-->
+                <!--<version>7.2.0.v20101020</version>-->
+                <!--<dependencies>-->
+                <!--</dependencies>-->
+                <!--<configuration>-->
+                    <!--<webAppConfig>-->
+                        <!--<contextPath>/${project.artifactId}</contextPath>-->
+                    <!--</webAppConfig>-->
+                    <!--<useTestClasspath>true</useTestClasspath>-->
+                    <!--<scanIntervalSeconds>10</scanIntervalSeconds>-->
+                    <!--<stopKey>${project.artifactId}-stop</stopKey>-->
+                    <!--<stopPort>9999</stopPort>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>
