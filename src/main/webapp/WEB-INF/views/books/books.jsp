@@ -24,7 +24,7 @@
     </c:forEach>
 </table>
 
-<p><a href="${pageContext.request.contextPath}/books/add">Add Book</a></p>
+<p><a href="${pageContext.request.contextPath}/books/new">Add Book</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-book">Get DoubanBook</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-collections-brief">Get Douban Brief Collections</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-collections-full">Get Douban Full Collections</a></p>

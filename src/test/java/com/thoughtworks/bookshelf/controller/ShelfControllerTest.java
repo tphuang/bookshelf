@@ -27,7 +27,7 @@ public class ShelfControllerTest {
     @Test
     public void shouldJumpToShelfPage() throws Exception {
         String expectedPage = "shelves/show_shelf";
-        int id = 1;
+        long id = 1;
         String actualPage = shelfController.findShelfById(model, id);
         assertThat(actualPage, is(expectedPage));
 

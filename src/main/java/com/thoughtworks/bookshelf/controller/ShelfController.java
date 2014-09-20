@@ -32,7 +32,7 @@ public class ShelfController {
     }
 
     @RequestMapping(value = "shelves/show/{id}", method = RequestMethod.GET)
-    public String findShelfById(ModelMap model, @PathVariable int id) throws Exception {
+    public String findShelfById(ModelMap model, @PathVariable long id) throws Exception {
         model.addAttribute("shelf", shelfService.findShelfById(id));
         return "shelves/show_shelf";
     }
@@ -50,7 +50,7 @@ public class ShelfController {
     }
 
     @RequestMapping(value = "shelves/edit/{id}", method = RequestMethod.GET)
-    public String loadEditPage(@PathVariable int id, ModelMap model) throws Exception {
+    public String loadEditPage(@PathVariable long id, ModelMap model) throws Exception {
         Shelf shelf = shelfService.findShelfById(id);
         model.addAttribute("shelf", shelf);
         return "shelves/edit_shelf";
@@ -63,7 +63,7 @@ public class ShelfController {
     }
 
     @RequestMapping(value = "shelves/delete/{id}", method = RequestMethod.GET)
-    public String deleteShelf(@PathVariable int id, ModelMap model) throws Exception {
+    public String deleteShelf(@PathVariable long id, ModelMap model) throws Exception {
         shelfService.deleteShelfById(id);
         return "redirect:/shelves";
     }

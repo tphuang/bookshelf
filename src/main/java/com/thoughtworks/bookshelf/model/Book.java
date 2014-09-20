@@ -1,14 +1,26 @@
 package com.thoughtworks.bookshelf.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "book")
 public class Book {
-    private String title;
-    private String imagePath;
-    private String author;
-    private String ISBN;
-    private String name;
-    private double price;
-    private String location;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "title", length = 200)
+    private String title;
+    @Column(name = "imagePath", length = 255)
+    private String imagePath;
+    @Column(name = "author", length = 100)
+    private String author;
+    @Column(name = "ISBN", length = 50)
+    private String ISBN;
+    @Column(name = "price")
+    private double price;
+    @Column(name = "location", length = 255)
+    private String location;
 
     public Book() {
     }
@@ -20,28 +32,12 @@ public class Book {
         this.ISBN = ISBN;
     }
 
-    public Book(String ISBN, String name, double price, String author, String location) {
-        this.ISBN = ISBN;
-        this.name = name;
-        this.price = price;
-        this.author = author;
-        this.location = location;
-    }
-
     public String getISBN() {
         return ISBN;
     }
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getPrice() {

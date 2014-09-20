@@ -57,7 +57,7 @@ public class ShelfDaoTest {
     public void shouldAddShelf() throws Exception {
         //given
         Shelf shelf = initShelf();
-        int beforeCreatedSize = shelfDao.findAll().size();
+        int before = shelfDao.findAll().size();
 
         //when
         Shelf ceatedShelf = shelfDao.createShlef(shelf);
@@ -65,7 +65,7 @@ public class ShelfDaoTest {
         //then
         assertThat(ceatedShelf.getCapacity(), is(shelf.getCapacity()));
         assertThat(ceatedShelf.getPosition(), is(shelf.getPosition()));
-        assertThat(shelfDao.findAll().size(), is(beforeCreatedSize + 1));
+        assertThat(shelfDao.findAll().size(), is(before + 1));
     }
 
     @Test

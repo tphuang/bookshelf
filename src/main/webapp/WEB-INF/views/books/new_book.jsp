@@ -1,10 +1,10 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ include file="../header.jsp" %>
 <div class="center">
-    <h2>Add Book</h2>
+    <h2>Create Book</h2>
 
     <form:form method="POST" commandName="book" modelAttribute="book"
-               action="${pageContext.request.contextPath}/books/add">
+               action="${pageContext.request.contextPath}/books/create">
         <table>
             <tbody>
             <tr>
@@ -24,7 +24,7 @@
                 <td class="input-control"><form:input path="ISBN"></form:input></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Add"></td>
+                <td><input type="submit" value="Create"></td>
                 <td></td>
             </tr>
             </tbody>

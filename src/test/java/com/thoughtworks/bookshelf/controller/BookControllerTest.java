@@ -30,7 +30,7 @@ public class BookControllerTest {
     public void shouldReturnBooksPage() throws Exception {
 
         //given
-        String expectedPage = "books/show-books";
+        String expectedPage = "books/books";
 
         //when
         String actualPage = bookController.getAllBooks(model);
@@ -69,7 +69,6 @@ public class BookControllerTest {
     }
 
     @Test
-
     public void shouldUpdateBookAndRedirectToBooksPage() throws Exception {
         //given
         String expectedPage = "redirect:/books";

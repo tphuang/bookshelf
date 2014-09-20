@@ -33,14 +33,14 @@ public class ShelfServiceImplTest {
         shelf.setId(2);
         shelf.setCapacity(100);
         shelf.setPosition("123");
-        int id = shelf.getId();
+        long id = shelf.getId();
         when(shelfDao.findShelfById(id)).thenReturn(shelf);
 
         //when
-        Shelf queryShelf = shelfService.findShelfById(id);
+        Shelf queriedShelf = shelfService.findShelfById(id);
 
         //then
-        assertThat(queryShelf.getCapacity(),is(shelf.getCapacity()));
+        assertThat(queriedShelf.getCapacity(),is(shelf.getCapacity()));
 
     }
 

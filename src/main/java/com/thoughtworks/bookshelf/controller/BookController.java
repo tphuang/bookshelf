@@ -23,7 +23,7 @@ public class BookController {
     @RequestMapping(value = "books", method = RequestMethod.GET)
     public String getAllBooks(ModelMap model) throws Exception {
         model.addAttribute("books", bookService.findAllbooks());
-        return "books/show-books";
+        return "books/books";
     }
 
     @RequestMapping(value = "books/delete/{id}", method = RequestMethod.POST)
@@ -36,7 +36,7 @@ public class BookController {
     public String editBook(@PathVariable int id, ModelMap model) throws Exception {
         Book book = bookService.findBookById(id);
         model.addAttribute("book", book);
-        return "books/edit-book";
+        return "books/edit_book";
     }
 
     @RequestMapping(value = "books/update", method = RequestMethod.POST)
@@ -45,14 +45,13 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @RequestMapping(value = "books/add", method = RequestMethod.GET)
+    @RequestMapping(value = "books/new", method = RequestMethod.GET)
     public String editBookWhenAdd(ModelMap model) throws Exception {
-        Book book = bookService.findBookById(0);
-        model.addAttribute("book", book);
-        return "books/add-book";
+        model.addAttribute("book", new Book());
+        return "books/new_book";
     }
 
-    @RequestMapping(value = "books/add", method = RequestMethod.POST)
+    @RequestMapping(value = "books/create", method = RequestMethod.POST)
     public String addBook(@ModelAttribute("book") Book book, ModelMap model) throws Exception {
         bookService.addBook(book);
         return "redirect:/books";

@@ -25,7 +25,7 @@ public class ShelfServiceImpl implements ShelfService {
     }
 
     @Override
-    public Shelf findShelfById(int id) {
+    public Shelf findShelfById(long id) {
         Shelf shelf = new Shelf();
         shelf = shelfDao.findShelfById(id);
         return shelf;
@@ -44,7 +44,7 @@ public class ShelfServiceImpl implements ShelfService {
     }
 
     @Override
-    public void deleteShelfById(int id) {
+    public void deleteShelfById(long id) {
         shelfDao.deleteShelfById(id);
     }
 }

@@ -6,7 +6,6 @@ import com.thoughtworks.bookshelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,31 +28,31 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public int addBook(Book book) throws SQLException, ClassNotFoundException {
-        int bookId = bookDao.addBook(book);
+    public int addBook(Book book){
+        int bookId = bookDao.createBook(book);
         return bookId;
     }
 
     @Override
-    public List<Book> findAllbooks() throws SQLException, ClassNotFoundException {
+    public List<Book> findAllbooks(){
         List<Book> books = new ArrayList<Book>();
         books = bookDao.findAllBooks();
         return books;
     }
 
     @Override
-    public Book findBookById(int bookId) throws SQLException, ClassNotFoundException {
+    public Book findBookById(int bookId){
         book = bookDao.findBookById(bookId);
         return book;
     }
 
     @Override
-    public void updateBook(Book book) throws SQLException, ClassNotFoundException {
+    public void updateBook(Book book){
         bookDao.updateBook(book);
     }
 
     @Override
-    public void deleteBookById(int bookId) throws SQLException, ClassNotFoundException {
+    public void deleteBookById(int bookId){
         bookDao.deleteBookById(bookId);
     }
 }

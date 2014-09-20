@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ShelfService {
     void createShelf(Shelf shelf);
-    Shelf findShelfById(int id);
+    Shelf findShelfById(long id);
     List<Shelf> findAllShelves();
     void updateShelf(Shelf shelf);
-    void deleteShelfById(int id);
+    void deleteShelfById(long id);
 }

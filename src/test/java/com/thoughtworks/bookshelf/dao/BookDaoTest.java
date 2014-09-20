@@ -2,29 +2,41 @@ package com.thoughtworks.bookshelf.dao;
 
 import com.thoughtworks.bookshelf.model.Book;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:hibernate-test.xml"})
 public class BookDaoTest {
+
+    @Autowired
     private BookDao bookDao;
-    private JdbcTemplate jdbcTemplate;
 
     @Before
     public void setUp() throws Exception {
-        bookDao = new BookDao();
+
     }
 
     @Test
     public void shouldFindAllBooks() throws Exception {
+        //given
         List<Book> books = new ArrayList<Book>();
+
+        //when
         books = (List<Book>) bookDao.findAllBooks();
+
+        //then
+        assertNotNull(books);
     }
 
     @Test
@@ -38,7 +50,7 @@ public class BookDaoTest {
     public void shouldFindBookById() throws Exception {
         //given
         Book book = initBook();
-        int bookId = bookDao.addBook(book);
+        int bookId = bookDao.createBook(book);
 
         //when
         Book queryBook = bookDao.findBookById(bookId);
@@ -51,24 +63,25 @@ public class BookDaoTest {
     }
 
     @Test
-    @Ignore
     public void shouldAddBook() throws Exception {
         //given
         Book book = initBook();
-        int beforeAddedSize = bookDao.findAllBooks().size();
+        int before = bookDao.findAllBooks().size();
+
         //when
-        int bookId = bookDao.addBook(book);
+        int bookId = bookDao.createBook(book);
 
         //then
-        assertThat(bookDao.findAllBooks().size(), is(beforeAddedSize + 1));
+        assertThat(bookDao.findAllBooks().size(), is(before + 1));
     }
 
     @Test
     public void shouldDeleteBook() throws Exception {
         //given
         Book book = initBook();
-        int bookId = bookDao.addBook(book);
+        int bookId = bookDao.createBook(book);
         int beforeAddedSize = bookDao.findAllBooks().size();
+
         //when
         bookDao.deleteBookById(bookId);
 
@@ -77,11 +90,10 @@ public class BookDaoTest {
     }
 
     @Test
-    @Ignore
     public void shouldUpdateBook() throws Exception {
         //given
         Book book = initBook();
-        int bookId = bookDao.addBook(book);
+        int bookId = bookDao.createBook(book);
 
         book.setTitle("小王子Updated~");
         book.setAuthor("廷鹏");

@@ -25,13 +25,6 @@ public class BookServiceImplTest {
     }
 
     @Test
-    public void should_get_book_by_ISBN() throws Exception {
-        String isbn = "";
-        bookDao.getBookByISBN(isbn);
-        verify(bookDao, times(1)).getBookByISBN(isbn);
-    }
-
-    @Test
     public void shouldFindAllBooks() throws Exception {
         //given
         List<Book> expectedBooks = new ArrayList<Book>();
