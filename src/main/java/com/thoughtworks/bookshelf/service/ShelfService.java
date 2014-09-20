@@ -9,5 +9,5 @@ public interface ShelfService {
     Shelf findShelfById(int id);
     List<Shelf> findAllShelves();
     void updateShelf(Shelf shelf);
-    void deleteShelf(int id);
+    void deleteShelfById(int id);
 }

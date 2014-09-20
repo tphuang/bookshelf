@@ -36,7 +36,7 @@ public class ShelfDao {
         return  shelf;
     }
 
-    public void deleteShelf(int shelfId) {
+    public void deleteShelfById(int shelfId) {
         session = sessionFactory.getCurrentSession();
         Shelf shelf = findShelfById(shelfId);
         session.delete(shelf);

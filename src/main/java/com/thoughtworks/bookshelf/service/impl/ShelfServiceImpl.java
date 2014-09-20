@@ -44,7 +44,7 @@ public class ShelfServiceImpl implements ShelfService {
     }
 
     @Override
-    public void deleteShelf(int id) {
-        shelfDao.deleteShelf(id);
+    public void deleteShelfById(int id) {
+        shelfDao.deleteShelfById(id);
     }
 }

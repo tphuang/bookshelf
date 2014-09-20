@@ -1,7 +1,6 @@
 package com.thoughtworks.bookshelf.dao;
 
 import com.thoughtworks.bookshelf.model.Shelf;
-import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,15 +17,12 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:hibernate-config.xml"})
+@ContextConfiguration(locations = {"classpath:hibernate-test.xml"})
 public class ShelfDaoTest {
 
     @Autowired
     private ShelfDao shelfDao;
-
     private Shelf shelf;
-
-    private SessionFactory sessionFactory;
 
     @Before
     public void setUp() throws Exception {
@@ -79,7 +75,7 @@ public class ShelfDaoTest {
         shelfDao.createShlef(shelf);
 
         //when
-        shelfDao.deleteShelf(shelf.getId());
+        shelfDao.deleteShelfById(shelf.getId());
 
         //then
         assertNull(shelfDao.findShelfById(shelf.getId()));

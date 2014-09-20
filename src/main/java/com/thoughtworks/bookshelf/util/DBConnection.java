@@ -1,6 +1,7 @@
 package com.thoughtworks.bookshelf.util;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
@@ -13,9 +14,9 @@ public class DBConnection {
     public static Connection getConnection() throws ClassNotFoundException,
             SQLException {
         Connection connection = null;
-//         加载MySQL的JDBC的驱动
-//        Class.forName(DB_DRIVER_CLASS);
-//        connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+        //加载MySQL的JDBC的驱动
+        Class.forName(DB_DRIVER_CLASS);
+        connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
         return connection;
     }
 }

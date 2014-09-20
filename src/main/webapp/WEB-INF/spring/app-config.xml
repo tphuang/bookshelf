@@ -8,5 +8,6 @@
 
     <context:component-scan base-package="com.thoughtworks.bookshelf" />
     <context:annotation-config />
-    <!--<import resource="mvc-config.xml"></import>-->
+    <import resource="mvc-config.xml"></import>
+    <import resource="hibernate-config.xml"></import>
 </beans>
