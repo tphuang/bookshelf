@@ -1,6 +1,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="header.jsp" %>
-<div class="content">
+<div class="content-container clear">
+<div class="content home-pages">
     <p><br>The path: <%= request.getRealPath("/images")%>
     </p>
 
@@ -30,6 +31,7 @@
     <p><a href="${pageContext.request.contextPath}/get-douban-collections-brief">Get Douban Brief Collections</a></p>
     <p><a href="${pageContext.request.contextPath}/get-douban-collections-full">Get Douban Full Collections</a></p>
     <p><a href="${pageContext.request.contextPath}/shelves">Get Shelves</a></p>
+</div>
 </div>
 
 <%@ include file="footer.jsp" %>

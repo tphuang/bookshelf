@@ -29,6 +29,9 @@
                 <a href="<c:url value='/books' />">Books</a>
             </li>
             <li>
+                <a href="<c:url value='/shelves' />">Shelves</a>
+            </li>
+            <li>
                 <a href="<c:url value='/users' />">Users</a>
             </li>
             <c:if test="${userName != null}">
