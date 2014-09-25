@@ -37,6 +37,7 @@ public class BaiduSearchSteps {
     }
 
     @When("^I enter the \"([^\"]*)\"$")
+//    @When("^I enter the (.*)$")
     public void I_enter_(String text) {
         webDriver.findElement(By.id("kw")).sendKeys(text);
     }

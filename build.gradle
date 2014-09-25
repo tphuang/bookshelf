@@ -56,10 +56,10 @@ dependencies {
 
     def cucumberVision = '1.1.8'
     testCompile "info.cukes:cucumber-java:${cucumberVision}",
-            "info.cukes:cucumber-core:${cucumberVision}",
-            "info.cukes:cucumber-junit:${cucumberVision}",
-            "info.cukes:cucumber-picocontainer:${cucumberVision}",
-            "info.cukes:cucumber-pro:1.0.14"
+                "info.cukes:cucumber-core:${cucumberVision}",
+                "info.cukes:cucumber-junit:${cucumberVision}",
+                "info.cukes:cucumber-picocontainer:${cucumberVision}",
+                "info.cukes:cucumber-pro:1.0.14"
 //   "com.github.samueltbrown:gradle-cucumber-plugin:0.6",
 
     runtime "commons-pool:commons-pool:1.3",
