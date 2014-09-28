@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>BookShelf Application</title>
+    <title>${requestScope.pageTitle}</title>
     <link rel="stylesheet" href="<c:url value='/style/main.css' />" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/style/douban.css' />" type="text/css"/>
     <script type="text/javascript" src="<c:url value='/scripts/jquery-1.10.2.js' />"></script>
@@ -25,7 +25,7 @@
             <li>
                 <a href="<c:url value='/home' />">Home</a>
             </li>
-            <li>
+            <li id="books">
                 <a href="<c:url value='/books' />">Books</a>
             </li>
             <li>

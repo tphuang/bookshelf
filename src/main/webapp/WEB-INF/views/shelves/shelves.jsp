@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" scope="request" value="Shelves"/>
+
 <%@ include file="../header.jsp" %>
 <div class="content-container clear">
     <div class="content">

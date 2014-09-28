@@ -1,4 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" scope="request" value="NewBook"/>
+
 <%@ include file="../header.jsp" %>
 <div class="center">
     <h2>Create Book</h2>
@@ -24,7 +27,7 @@
                 <td class="input-control"><form:input path="ISBN"></form:input></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Create"></td>
+                <td id="create-book"><input type="submit" value="Create"></td>
                 <td></td>
             </tr>
             </tbody>

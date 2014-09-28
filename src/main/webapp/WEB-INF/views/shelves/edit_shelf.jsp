@@ -1,4 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" scope="request" value="EditShelf"/>
+
 <%@ include file="../header.jsp" %>
 <div class="center">
     <h2>Update Shelf</h2>

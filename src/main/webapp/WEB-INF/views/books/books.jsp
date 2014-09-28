@@ -1,5 +1,7 @@
-<%@ include file="../header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" scope="request" value="Books"/>
 
+<%@ include file="../header.jsp" %>
 <table class="table center">
     <c:forEach var="book" items="${books}" varStatus="i">
 
@@ -24,7 +26,7 @@
     </c:forEach>
 </table>
 
-<p><a href="${pageContext.request.contextPath}/books/new">Add Book</a></p>
+<p id="add-book"><a href="${pageContext.request.contextPath}/books/new">Add Book</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-book">Get DoubanBook</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-collections-brief">Get Douban Brief Collections</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-collections-full">Get Douban Full Collections</a></p>

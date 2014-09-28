@@ -1,10 +1,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pageTitle" scope="request" value="EditBook"/>
+
 <%@ include file="../header.jsp" %>
 <div class="center">
     <h2>Update Book</h2>
     <form:form method="POST" commandName="book" modelAttribute="book"
                action="${pageContext.request.contextPath}/books/update">
-        <table>//jsp tag
+        <table>
             <tbody>
             <tr>
                 <td>Id:</td>
