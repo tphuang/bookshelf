@@ -27,7 +27,7 @@
                 <td class="input-control"><form:input path="ISBN"></form:input></td>
             </tr>
             <tr>
-                <td id="create-book"><input type="submit" value="Create"></td>
+                <td><input type="submit" value="Create"></td>
                 <td></td>
             </tr>
             </tbody>

@@ -26,7 +26,7 @@ public class BookController {
         return "books/books";
     }
 
-    @RequestMapping(value = "books/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "books/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable int id, ModelMap model) throws Exception {
         bookService.deleteBookById(id);
         return "redirect:/books";

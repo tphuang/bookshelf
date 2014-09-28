@@ -25,8 +25,8 @@
             <li>
                 <a href="<c:url value='/home' />">Home</a>
             </li>
-            <li id="books">
-                <a href="<c:url value='/books' />">Books</a>
+            <li>
+                <a id="books" href="<c:url value='/books' />">Books</a>
             </li>
             <li>
                 <a href="<c:url value='/shelves' />">Shelves</a>

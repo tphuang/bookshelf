@@ -12,9 +12,9 @@
             <div>${book.id}</div>
             <div class="book-image-large"><img src="<c:out value="${book.imagePath}"/>"
                                                alt="${book.title}" title="${book.title}"></div>
-            <div class="action-item"><a href="javascript:void(0);" onclick="deleteBook('${book.id}');">Del</a></div>
-                <%--<div class="action-delete"><a href="books/delete/${book.id}">Del</a></div>--%>
-            <div class="action-item"><a href="books/edit/${book.id}">Edit</a></div>
+            <%--<div class="action-item"><a class="action-delete" href="javascript:void(0);" onclick="deleteBook('${book.id}');">Del</a></div>--%>
+            <div class="action-item"><a class="action-delete" href="books/delete/${book.id}">Del</a></div>
+            <div class="action-item"><a class="action-edit" href="books/edit/${book.id}">Edit</a></div>
             <div><c:out value="${book.title}"/></div>
             <div><c:out value="${book.author}"/></div>
             <div><c:out value="${book.ISBN}"/></div>
@@ -26,7 +26,7 @@
     </c:forEach>
 </table>
 
-<p id="add-book"><a href="${pageContext.request.contextPath}/books/new">Add Book</a></p>
+<p><a id="add-book" href="${pageContext.request.contextPath}/books/new">Add Book</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-book">Get DoubanBook</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-collections-brief">Get Douban Brief Collections</a></p>
 <p><a href="${pageContext.request.contextPath}/get-douban-collections-full">Get Douban Full Collections</a></p>
