@@ -12,14 +12,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import skeleton.pages.BeginPage;
 import skeleton.pages.BooksPage;
 
-public class BooksSteps {
+public class CommonSteps {
     private WebDriver webDriver;
     private PageHelper pageHelper;
 
     @Before
     public void setUp() {
         webDriver = new FirefoxDriver();
-//        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         webDriver.manage().window().setSize(new Dimension(860, 1080));
 
         pageHelper = new PageHelper(webDriver)
@@ -44,7 +43,6 @@ public class BooksSteps {
 
     @Then("^user is on '(.*)' page$")
     public void user_on_special_page(String pageName) {
-//        assertThat(webDriver.getTitle(), containsString(text));
         pageHelper.assertOnPage(pageName);
     }
 

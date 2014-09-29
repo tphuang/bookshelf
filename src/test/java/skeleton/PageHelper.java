@@ -13,6 +13,7 @@ import java.util.Map;
 public class PageHelper {
     private static final int DELAY_SEAONDS = 40;
     private static final int ELEMENTS_DELAY_MILLIS = 300;
+    public static final String LOCAL_URL = "http://localhost:8080/bookshelf/home";
 
     private WebDriver webDriver;
     private Map<String, String> descriptionToValueMap = new HashMap<String, String>();
@@ -27,7 +28,7 @@ public class PageHelper {
     }
 
     public void getAppUrl() {
-        webDriver.get("http://localhost:8080/bookshelf/home");
+        webDriver.get(LOCAL_URL);
     }
 
     public String getElementValue(String description) {
@@ -79,14 +80,14 @@ public class PageHelper {
         return list;
     }
 
-    public WebElement getLastElementByCssSelector(String selector){
+    public WebElement getLastElementByCssSelector(String selector) {
         try {
-            Thread.sleep(ELEMENTS_DELAY_MILLIS*10);
+            Thread.sleep(ELEMENTS_DELAY_MILLIS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         List<WebElement> elements = getElementsByCssSelector(selector);
-        return elements.get(elements.size()-1);
+        return elements.get(elements.size() - 1);
     }
 
     public void fillInput(String content, String field) {
