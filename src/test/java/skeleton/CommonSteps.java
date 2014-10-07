@@ -47,8 +47,8 @@ public class CommonSteps {
     }
 
     @And("^user clicks the '(.*)' link$")
-    public void user_clicks_link(String linkName){
-        pageHelper.getElementByElementId(linkName).click();
+    public void user_clicks_link(String linkText){
+        pageHelper.getElementByElementId(linkText).click();
     }
 
     @And("^user clicks the '(.*)' button$")
