@@ -1,3 +1,4 @@
+@books
 Feature:Books_CRUD
 
   Scenario: Implement the CRUD functionalities of a book

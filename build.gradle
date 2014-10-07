@@ -78,7 +78,7 @@ test {
     exclude '**/skeleton/**/*.class'
 }
 
-task cucumberTest(type: Test) {
+task integration-tests(type: Test) {
     include '**/skeleton/**/*.class'
     doFirst {
         jettyRun.daemon = true
@@ -103,7 +103,7 @@ cucumber {
     formats = ['pretty', 'json:build/cucumber.json', 'junit:build/cucumber.xml']
     glueDirs = ['src/test/java/skeleton']
     featureDirs = ['src/test/resources/skeleton']
-//    tags = ['@billing', '@important']
+    tags = ['@books']
     monochrome = false
     strict = false
     dryRun = false

@@ -1,10 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+         http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>bookshelf</groupId>
     <artifactId>bookshelf</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <springFrameworkVersion>4.0.6.RELEASE</springFrameworkVersion>
+        <jerseyVision>2.11</jerseyVision>
+        <hibernateVision>4.3.6.Final</hibernateVision>
+        <seleniumVersion>2.42.2</seleniumVersion>
+        <cucumberVision>1.1.8</cucumberVision>
+        <cucumber.options>--format html:target/cucumber --tags @books</cucumber.options>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -23,37 +35,37 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>4.0.6.RELEASE</version>
+            <version>${springFrameworkVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.0.6.RELEASE</version>
+            <version>${springFrameworkVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>4.0.6.RELEASE</version>
+            <version>${springFrameworkVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.0.6.RELEASE</version>
+            <version>${springFrameworkVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>4.0.6.RELEASE</version>
+            <version>${springFrameworkVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.0.6.RELEASE</version>
+            <version>${springFrameworkVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.0.6.RELEASE</version>
+            <version>${springFrameworkVersion}</version>
         </dependency>
 
         <dependency>
@@ -98,9 +110,9 @@
             <version>1.4.01</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.apache.httpcomponents</groupId>-->
-            <!--<artifactId>httpclient</artifactId>-->
-            <!--<version>4.1.2</version>-->
+        <!--<groupId>org.apache.httpcomponents</groupId>-->
+        <!--<artifactId>httpclient</artifactId>-->
+        <!--<version>4.1.2</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -120,17 +132,17 @@
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
-            <version>2.11</version>
+            <version>${jerseyVision}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
-            <version>2.11</version>
+            <version>${jerseyVision}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-common</artifactId>
-            <version>2.11</version>
+            <version>${jerseyVision}</version>
         </dependency>
         <dependency>
             <groupId>jsptags</groupId>
@@ -146,17 +158,17 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.6.Final</version>
+            <version>${hibernateVision}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.6.Final</version>
+            <version>${hibernateVision}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
-            <version>4.3.6.Final</version>
+            <version>${hibernateVision}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -166,12 +178,12 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.42.2</version>
+            <version>${seleniumVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.42.2</version>
+            <version>${seleniumVersion}</version>
         </dependency>
 
         <dependency>
@@ -193,34 +205,28 @@
             <scope>test</scope>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.github.samueltbrown</groupId>-->
-            <!--<artifactId>gradle-cucumber-plugin</artifactId>-->
-            <!--<version>0.6</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>1.1.8</version>
+            <version>${cucumberVision}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-core</artifactId>
-            <version>1.1.8</version>
+            <version>${cucumberVision}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.1.8</version>
+            <version>${cucumberVision}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
-            <version>1.1.8</version>
+            <version>${cucumberVision}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -264,11 +270,9 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.2.0.v20101020</version>
-                <dependencies>
-                </dependencies>
+                <version>9.1.0.v20131115</version>
                 <configuration>
                     <webAppConfig>
                         <contextPath>/${project.artifactId}</contextPath>
@@ -276,9 +280,97 @@
                     <useTestClasspath>true</useTestClasspath>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <stopKey>${project.artifactId}-stop</stopKey>
-                    <stopPort>9999</stopPort>
+                    <stopPort>9995</stopPort>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>unit-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.17</version>
+                        <configuration>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>integration-tests</id>
+            <!--<activation>-->
+            <!--<activeByDefault>true</activeByDefault>-->
+            <!--</activation>-->
+
+            <properties>
+                <cucumber.options>--format html:target/cucumber --tags @books</cucumber.options>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- block unit tests execution -->
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.17</version>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.17</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <cucumber.options>${cucumber.options}</cucumber.options>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <version>9.1.0.v20131115</version>
+                        <configuration>
+                            <webAppConfig>
+                                <contextPath>/${project.artifactId}</contextPath>
+                            </webAppConfig>
+                            <useTestClasspath>true</useTestClasspath>
+                            <scanIntervalSeconds>10</scanIntervalSeconds>
+                            <stopKey>${project.artifactId}-stop</stopKey>
+                            <stopPort>9995</stopPort>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>start-jetty</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <daemon>true</daemon>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop-jetty</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
