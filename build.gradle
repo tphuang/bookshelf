@@ -88,4 +88,23 @@ task cucumberTest(type: Test) {
         jettyStop.execute()
     }
 }
-apply from: 'cucumber.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.github.samueltbrown:gradle-cucumber-plugin:0.8"
+    }
+}
+apply plugin: "com.github.samueltbrown.cucumber"
+cucumber {
+    sourceSets = [project.sourceSets.test]
+    formats = ['pretty', 'json:build/cucumber.json', 'junit:build/cucumber.xml']
+    glueDirs = ['src/test/java/skeleton']
+    featureDirs = ['src/test/resources/skeleton']
+//    tags = ['@billing', '@important']
+    monochrome = false
+    strict = false
+    dryRun = false
+}
