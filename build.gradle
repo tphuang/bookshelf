@@ -2,6 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: 'java'
+apply plugin: 'maven'
 apply from: 'cobertura.gradle'
 
 repositories {
@@ -57,10 +58,11 @@ dependencies {
 
     def cucumberVision = '1.1.8'
     testCompile "info.cukes:cucumber-java:${cucumberVision}",
-                "info.cukes:cucumber-core:${cucumberVision}",
-                "info.cukes:cucumber-junit:${cucumberVision}",
-                "info.cukes:cucumber-picocontainer:${cucumberVision}",
-                "info.cukes:cucumber-pro:1.0.14"
+            "info.cukes:cucumber-core:${cucumberVision}",
+            "info.cukes:cucumber-junit:${cucumberVision}",
+            "info.cukes:cucumber-picocontainer:${cucumberVision}",
+            "info.cukes:cucumber-pro:1.0.14",
+            "info.cukes:cucumber-groovy:1.1.6"
 
     runtime "commons-pool:commons-pool:1.3",
             "commons-dbcp:commons-dbcp:1.2.2",
@@ -68,28 +70,22 @@ dependencies {
 }
 
 httpPort = 8080
-stopPort = 9451
-stopKey = 'foobar'
+[jettyRun, jettyRunWar, jettyStop]*.stopPort = 9966
+[jettyRun, jettyRunWar, jettyStop]*.stopKey = 'stopKey'
 
-//jettyRun {
-//    System.properties['GRADLE_OPTS'] = '-Xdebug -Xrunjdwp:transport=dt_socket,address=9999,server=y,suspend=n'
-//}
+test {
+    include '**/*Test.class'
+    exclude '**/skeleton/**/*.class'
+}
 
-buildscript {
-    repositories {
-        jcenter()
+task cucumberTest(type: Test) {
+    include '**/skeleton/**/*.class'
+    doFirst {
+        jettyRun.daemon = true
+        jettyRun.execute()
     }
-    dependencies {
-        classpath "com.github.samueltbrown:gradle-cucumber-plugin:0.8"
+    doLast {
+        jettyStop.execute()
     }
 }
-apply plugin: "com.github.samueltbrown.cucumber"
-cucumber {
-    formats = ['pretty', 'json:build/cucumber.json', 'junit:build/cucumber.xml']
-    glueDirs = ['src/test/java/skeleton']
-    featureDirs = ['src/test/resources/skeleton']
-//    tags = ['@billing', '@important']
-    monochrome = false
-    strict = false
-    dryRun = false
-}
+apply from: 'cucumber.gradle'
