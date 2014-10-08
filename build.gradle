@@ -78,7 +78,7 @@ test {
     exclude '**/skeleton/**/*.class'
 }
 
-task integration-tests(type: Test) {
+task cucumber(type: Test) {
     include '**/skeleton/**/*.class'
     doFirst {
         jettyRun.daemon = true
@@ -87,24 +87,4 @@ task integration-tests(type: Test) {
     doLast {
         jettyStop.execute()
     }
-}
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "com.github.samueltbrown:gradle-cucumber-plugin:0.8"
-    }
-}
-apply plugin: "com.github.samueltbrown.cucumber"
-cucumber {
-    sourceSets = [project.sourceSets.test]
-    formats = ['pretty', 'json:build/cucumber.json', 'junit:build/cucumber.xml']
-    glueDirs = ['src/test/java/skeleton']
-    featureDirs = ['src/test/resources/skeleton']
-    tags = ['@books']
-    monochrome = false
-    strict = false
-    dryRun = false
 }
