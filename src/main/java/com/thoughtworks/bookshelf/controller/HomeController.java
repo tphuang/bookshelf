@@ -89,4 +89,10 @@ public class HomeController {
         model.addAttribute("error", "true");
         return "login";
     }
+
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public String test(ModelMap model){
+        return "test";
+    }
+
 }
