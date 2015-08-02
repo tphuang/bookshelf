@@ -2,7 +2,7 @@
     <br/>
     <hr/>
     <p class="footer">
-        TW BookShelf - powered by Tingpeng !
+        CVTE BookShelf - powered by Tingpeng !
     </p>
 </div>
 </body>

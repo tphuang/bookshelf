@@ -18,7 +18,7 @@
 <div class="header">
     <div class="navbar">
         <a class="brand" href="<c:url value='/home' />" class="nav_link">
-            TW BookShelf
+            CVTE BookShelf
         </a>
         <c:set var="userName" value="${sessionScope.userName}" scope="session"></c:set>
         <ul class="nav">

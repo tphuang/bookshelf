@@ -5,8 +5,8 @@
 <%@ include file="header.jsp" %>
 <div class="content-container clear">
 <div class="content home-pages">
-    <p><br>The path: <%= request.getRealPath("/images")%>
-    </p>
+    <%--<p><br>The path: <%= request.getRealPath("/images")%>--%>
+    <%--</p>--%>
 
     <table class="table table-images">
         <c:forEach var="imageFile" items="${imageFiles}" varStatus="i">

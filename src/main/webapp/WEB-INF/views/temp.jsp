@@ -15,7 +15,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <a class="brand" href="/bookshelf/home" class="nav_link">
-            TW BookShelf
+            CVTE BookShelf
         </a>
 
         <ul class="nav">
@@ -195,7 +195,7 @@
 
 <br/> <hr />
 <p class="footer center">
-    TW BookShelf - powered by Tingpeng !
+    CVTE BookShelf - powered by Tingpeng !
 </p>
 
 </body>
