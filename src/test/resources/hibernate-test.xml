@@ -13,7 +13,7 @@
     <context:component-scan base-package="com.thoughtworks.bookshelf.dao"/>
     <context:annotation-config/>
 
-    <context:property-placeholder location="classpath:database.properties"/>
+    <context:property-placeholder location="classpath:environment.properties"/>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="${driverClassName}"></property>

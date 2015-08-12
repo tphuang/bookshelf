@@ -1,3 +1,4 @@
+<!--suppress MavenModelInspection -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="
@@ -74,11 +75,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.+</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
@@ -109,9 +105,9 @@
             <version>1.4.01</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.apache.httpcomponents</groupId>-->
-            <!--<artifactId>httpclient</artifactId>-->
-            <!--<version>4.1.2</version>-->
+        <!--<groupId>org.apache.httpcomponents</groupId>-->
+        <!--<artifactId>httpclient</artifactId>-->
+        <!--<version>4.1.2</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -302,6 +298,62 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>testEnv</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>Using env.test.properties</echo>
+                                        <delete file="${project.build.outputDirectory}/environment.properties"/>
+                                        <copy file="src/main/resources/environment.test.properties"
+                                              tofile="${project.build.outputDirectory}/environment.properties"/>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>devEnv</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>Using env.dev.properties</echo>
+                                        <delete file="${project.build.outputDirectory}/environment.properties"/>
+                                        <copy file="src/main/resources/environment.dev.properties"
+                                              tofile="${project.build.outputDirectory}/environment.properties"/>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
+
         <profile>
             <id>integration-tests</id>
             <properties>
@@ -378,4 +430,5 @@
             </build>
         </profile>
     </profiles>
+
 </project>
