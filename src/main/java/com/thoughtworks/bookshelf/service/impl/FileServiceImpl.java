@@ -1,18 +1,22 @@
 package com.thoughtworks.bookshelf.service.impl;
 
-import com.thoughtworks.bookshelf.service.FileService;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
-import org.springframework.stereotype.Component;
-
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+import org.springframework.stereotype.Component;
+import com.thoughtworks.bookshelf.service.FileService;
 
 @Component
 public class FileServiceImpl implements FileService {
